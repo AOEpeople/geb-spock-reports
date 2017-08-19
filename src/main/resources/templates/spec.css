@@ -1,0 +1,194 @@
+body {
+    font-family: Helvetica;
+}
+
+p {
+    margin: 0
+}
+
+table {
+    margin: 5px;
+}
+
+p.date-test-ran {
+    font-size: small;
+    font-style: italic;
+}
+
+table.features-table {
+    width: 800px;
+}
+
+table.summary-table {
+    width: 800px;
+    text-align: left;
+    font-weight: bold;
+    font-size: small;
+}
+
+table.summary-table th {
+    background: lightblue;
+    padding: 6px;
+}
+
+table.summary-table td {
+    background: #E0E0E0;
+    padding: 6px;
+}
+
+pre.narrative {
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 20px;
+    color: #444;
+    margin-top: 4px;
+}
+
+h4.spec-title {
+    margin-bottom: 8px;
+}
+
+.feature-description {
+    font-size: large;
+    background: lightblue;
+    padding: 4px;
+}
+
+.feature-toc-error {
+    color: #F89A4F;
+}
+
+.feature-toc-failure {
+    color: #FF8080;
+}
+
+.feature-toc-ignored {
+    color: lightgray;
+}
+
+.feature-toc-pass {
+    color: green;
+}
+
+.feature-description.error {
+    background: #F89A4F;
+}
+
+.feature-description.failure {
+    background: #FF8080;
+}
+
+.feature-description.ignored {
+    background: lightgray;
+}
+
+.feature-description.ignored .reason {
+    color: black;
+    font-style: italic;
+    font-size: small;
+}
+
+div.issues {
+    color: black;
+    font-weight: bold;
+    font-size: small;
+}
+
+div.problem-description {
+    padding: 10px;
+    background: pink;
+    border-radius: 10px;
+}
+
+div.problem-header {
+    font-weight: bold;
+    color: red;
+}
+
+div.problem-list {
+
+}
+
+table.ex-table th {
+    background: lightblue;
+    padding: 0px 5px 0px 5px;
+}
+
+table.ex-table td {
+    background: #E0E0E0;
+    padding: 0px 5px 0px 5px;
+}
+
+table td {
+    min-width: 50px;
+}
+
+col.block-kind-col {
+    width: 70px;
+}
+
+span.spec-header {
+    font-weight: bold;
+}
+
+span.back-to-top {
+    float: right;
+    font-size: 60%;
+}
+
+div.spec-text {
+    /*color: green;*/
+}
+
+p.spec-status {
+    font-style: italic;
+}
+
+.ignored {
+    color: gray;
+}
+
+td.ex-result {
+    text-align: center;
+    background: white !important;
+}
+
+.ex-pass {
+    color: darkgreen;
+}
+
+.ex-fail {
+    color: red;
+    font-weight: bold;
+}
+
+p.block-kind {
+    margin: 2px;
+    font-style: italic;
+}
+
+p.block-text {
+
+}
+
+div.footer {
+    text-align: center;
+    font-size: small;
+}
+
+div.geb-artifacts {
+    font-size: 13px;
+    width: 100%;
+    margin-top: 12px;
+}
+
+div.geb-artifacts table {
+    text-align: left;
+    width: 100%;
+    border: 1px solid lightgray;
+    margin: 0;
+}
+
+tr.geb-failure {
+    background-color: #FF8080;
+}
