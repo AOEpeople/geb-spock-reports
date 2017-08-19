@@ -17,13 +17,15 @@ testCompile ("com.athaydes:spock-reports:1.3.1") { transitive = false }
 testCompile "org.gebish:geb-spock:1.1.1"
 
 // you may also need selenium support
-compile "org.seleniumhq.selenium:selenium-firefox-driver:2.52.0"
-compile "org.seleniumhq.selenium:selenium-support:2.52.0"
+testCompile "org.seleniumhq.selenium:selenium-firefox-driver:2.52.0"
+testCompile "org.seleniumhq.selenium:selenium-support:2.52.0"
 
 // recommended for logging
 testCompile 'org.slf4j:slf4j-api:1.7.13'
 testCompile 'org.slf4j:slf4j-simple:1.7.13'
 ```
+
+---
 
 Create a `GebConfig.groovy` in `src/test/resources`.
 See [Book of Geb](http://gebish.org/manual/current/#configuration) for further configuration.
@@ -35,7 +37,13 @@ reportingListener = new GebReportingListener()
 reportsDir = 'build/geb-spock-reports'
 ```
 
-Create a properties file named `src/test/resources/META-INF/services/com.athaydes.spockframework.report.IReportCreator.properties`.
+---
+
+Create a properties file named 
+
+`src/test/resources/META-INF/services/com.athaydes.spockframework.report.IReportCreator.properties`
+
+
 The following properties are required.
 
 ```properties
@@ -53,5 +61,7 @@ com.athaydes.spockframework.report.template.TemplateReportCreator.summaryFileNam
 ```
 
 See the [spock-reports documentation](https://github.com/renatoathaydes/spock-reports#customizing-the-reports) for further configuration.
+
+---
 
 Make sure that the `reportDir` in `GebConfig.groovy` matches the `outputDir` in the `.properties` file!
