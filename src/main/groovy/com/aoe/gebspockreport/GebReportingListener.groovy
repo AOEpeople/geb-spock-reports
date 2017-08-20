@@ -68,10 +68,15 @@ class GebReportingListener implements ReportingListener {
             ]
         }
 
-        // add file to report
+        // add relative file path to report if it does not exist yet
         def report = feature.reports.find { report -> report.number == reportNumber }
-        def files = reportFiles.collect { it.path - reportsDir }
-        report.files += files // todo: check if file already exists is list
+        reportFiles.each {
+            def relativePath = it.path.startsWith(reportsDir) ? it.path.substring(reportsDir.size()) : reportsDir
+            relativePath = "./" + relativePath
+            if (!(relativePath in report.files)) {
+                report.files += relativePath
+            }
+        }
 
         gebReportFile.write(JsonOutput.prettyPrint(JsonOutput.toJson(allReports)))
     }
