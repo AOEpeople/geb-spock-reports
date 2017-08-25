@@ -64,7 +64,7 @@ See the [spock-reports documentation](https://github.com/renatoathaydes/spock-re
 
 ---
 
-Make sure that the `reportDir` in `GebConfig.groovy` matches the `outputDir` in the `.properties` file!
+**Important:** For now, make sure that the `reportDir` in `GebConfig.groovy` matches the `outputDir` in the `.properties` file!
 
 ## License
 

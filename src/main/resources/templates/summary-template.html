@@ -21,18 +21,6 @@ limitations under the License.
 </head>
 <body>
 
-<%
-// copy spec css
-def src = this.getClass().getResource('/templates/spec.css')
-def dst = new File('./build/geb-spock-reports/spec.css')
-dst.write(src.text)
-
-// copy summary css
-src = this.getClass().getResource('/templates/summary.css')
-dst = new File('./build/geb-spock-reports/summary.css')
-dst.write(src.text)
-%>
-
 <% def stats = utils.aggregateStats(data) %>
 
 <h2>Specification run results</h2>

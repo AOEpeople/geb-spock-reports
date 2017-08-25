@@ -15,11 +15,12 @@
  */
 package com.aoe.gebspockreport
 
+import com.aoe.gebspockreport.report.FeatureReport
+import com.aoe.gebspockreport.report.GebArtifact
+import com.aoe.gebspockreport.report.SpecReport
 import geb.report.ReportState
 import geb.report.Reporter
 import geb.report.ReportingListener
-import groovy.json.JsonOutput
-import groovy.json.JsonSlurper
 
 /**
  * @author Tilman Ginzel
@@ -28,56 +29,47 @@ class GebReportingListener implements ReportingListener {
 
     @Override
     void onReport(Reporter reporter, ReportState reportState, List<File> reportFiles) {
-        def gebReportFile = new File(reportState.browser.config.reportsDir.path, 'geb-report-info.json')
-        def reportsDir = reportState.browser.config.reportsDir.path
-        def allReports = gebReportFile.exists() ? new JsonSlurper().parseText(gebReportFile.text) : [specs: []]
+        def gebReport = GebReportUtils.readGebReport()
 
-        def specLabel = reportState.browser.getReportGroupDir().getName()
-        def (featureNumber, reportNumber, featureLabel) = reportState.label.split('-', 3) // does not split featureLabel and reportLabel
-        featureNumber = featureNumber.toInteger()
-        reportNumber = reportNumber.toInteger()
+        // get info about currently executed feature and report
+        def (featureNum, reportNum, reportLabel) = reportState.label.split('-', 3) // does not split feature and report label
+        int featureNumber = featureNum.toInteger()
+        int reportNumber = reportNum.toInteger()
 
-        // add spec to reports if it does not exist yet
-        if (!(specLabel in allReports.specs.label)) {
-            allReports.specs << [
-                label: specLabel,
-                features: []
-            ]
+        // find or create spec report
+        def specLabel = GebReportUtils.createSpecLabelFromPath(reportState.browser.getReportGroupDir().getPath())
+        def specReport = gebReport.findSpecByLabel(specLabel)
+        if (!specReport) {
+            specReport = new SpecReport()
+            specReport.label = specLabel
+            gebReport.specs.add(specReport)
         }
 
-        // add feature to spec if it does not exist yet
-        def spec = allReports.specs.find { spec -> spec.label == specLabel }
-        if (!(featureNumber in spec.features.number)) {
-            spec.features << [
-                label: featureLabel,
-                number: featureNumber,
-                reports: []
-            ]
+        // find or create feature report
+        def featureReport = specReport.findFeatureByNumber(featureNumber)
+        if (!featureReport) {
+            featureReport = new FeatureReport()
+            featureReport.number = featureNumber
+            featureReport.label = reportLabel
+            specReport.features.add(featureReport)
         }
 
-        // add report to feature if it does not exist yet
-        def feature = spec.features.find { feature -> feature.number == featureNumber }
-        if (!(reportNumber in feature.reports.number)) {
-            feature.reports << [
-                label: featureLabel,
-                time: new Date().time,
-                number: reportNumber,
-                page: reportState.browser.page.getClass().getSimpleName(),
-                url: reportState.browser.driver.currentUrl,
-                files: []
-            ]
+        // find or create artifact
+        def gebArtifact = featureReport.findArtifactByNumber(reportNumber)
+        if (!gebArtifact) {
+            gebArtifact = new GebArtifact()
+            gebArtifact.number = reportNumber
+            gebArtifact.timestamp = new Date().time
+            gebArtifact.label = reportLabel
+            gebArtifact.pageObject = reportState.browser.page.getClass().getSimpleName()
+            gebArtifact.url = reportState.browser.getCurrentUrl()
+            featureReport.artifacts.add(gebArtifact)
         }
 
-        // add relative file path to report if it does not exist yet
-        def report = feature.reports.find { report -> report.number == reportNumber }
-        reportFiles.each {
-            def relativePath = it.path.startsWith(reportsDir) ? it.path.substring(reportsDir.size()) : reportsDir
-            relativePath = "./" + relativePath
-            if (!(relativePath in report.files)) {
-                report.files += relativePath
-            }
-        }
+        // add report files
+        gebArtifact.addFiles(reportFiles)
 
-        gebReportFile.write(JsonOutput.prettyPrint(JsonOutput.toJson(allReports)))
+        // serialize geb report
+        GebReportUtils.writeGebReport(gebReport)
     }
 }

@@ -23,13 +23,10 @@ limitations under the License.
 
 <%
 def stats = utils.stats( data )
-def getReportFile = new File('./build/geb-spock-reports/geb-report-info.json')
-def gebReport
-def gebSpecResults
-if (getReportFile?.exists()) {
-    gebReport = (new groovy.json.JsonSlurper()).parseText(new File('./build/geb-spock-reports/geb-report-info.json').text)
-    gebSpecResults = gebReport.specs.find { it?.label.replaceAll('/', '.') == utils.getSpecClassName(data) }?.features
-}
+
+def gebUtils = new com.aoe.gebspockreport.GebReportUtils()
+def gebReport = gebUtils.readGebReport()
+def specReport = gebReport.findSpecByLabel(utils.getSpecClassName(data))
 
 def writeIssuesOrSees = { issues, description ->
 if ( issues?.value() ) { %>
@@ -120,8 +117,8 @@ writeIssuesOrSees(utils.specAnnotation(data, spock.lang.See), 'See')
     def cssClass = isIgnored ? 'ignored' : (isError ? 'error' : (isFailure ? 'failure' : ''))
 
     featureCount += isIgnored ? 0 : 1
-    def gebFeatureReport = gebSpecResults?.find { it?.number == featureCount}
-    def gebFeatureArtifacts = gebFeatureReport?.reports?.sort { it.number }
+    def gebFeatureReport = specReport?.findFeatureByNumberAndName(featureCount, name)
+    def gebArtifacts = gebFeatureReport?.artifacts
     %>
     <!-- print feature title and issues/see annotations-->
     <tr>
@@ -191,7 +188,7 @@ writeIssuesOrSees(utils.specAnnotation(data, spock.lang.See), 'See')
     <% } %>
 
     <!-- print geb artifacts-->
-    <% if (gebFeatureArtifacts) { %>
+    <% if (gebArtifacts) { %>
     <tr>
         <td colspan="10">
             <div class="geb-artifacts">
@@ -206,17 +203,17 @@ writeIssuesOrSees(utils.specAnnotation(data, spock.lang.See), 'See')
                     </tr>
                     </thead>
                     <tbody>
-                    <% gebFeatureArtifacts.each { report ->
-                    def label = report.label?.replaceFirst(name+"-", '')
-                    def trCssClass = label == 'failure' ? 'geb-failure' : ''
-                    def imageUrl = "./" + report.files.find { it.endsWith('png') }
-                    def pageUrl = "./" + report.files.find { it.endsWith('html') }
+                    <% gebArtifacts.sort { it.number }.each { artifact ->
+                        def label = artifact.label?.replaceFirst(name+"-", '')
+                        def trCssClass = label == 'failure' ? 'geb-failure' : ''
+                        def imageFile = "./" + artifact.files.find { it.endsWith('png') }
+                        def domSnapshotFile = "./" + artifact.files.find { it.endsWith('html') }
                     %>
                     <tr class="$trCssClass">
                         <td>$label</td>
-                        <td><a href="$imageUrl">(png)</a></td>
-                        <td><a href="$pageUrl">(html)</a></td>
-                        <td>${report.page}</td>
+                        <td><a href="$imageFile">(png)</a></td>
+                        <td><a href="$domSnapshotFile">(html)</a></td>
+                        <td>${artifact.pageObject}</td>
                     </tr>
                     <%
                     } %>
