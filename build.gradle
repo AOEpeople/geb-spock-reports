@@ -28,27 +28,20 @@ contacts {
 def projectUrl = 'https://github.com/AOEpeople/geb-spock-reports'
 
 bintray {
-    user = System.getenv("BINTRAY_USER")
-    key = System.getenv("BINTRAY_KEY")
+    if (project.hasProperty('bintrayUser')) {
+        user = project.property('bintrayUser')
+        key = project.property('bintrayKey')
+    }
 
     dryRun = false
     publish = true
     pkg {
         repo = 'geb-spock-reports'
         userOrg = 'aoepeople'
-        name = project.name
-        desc = project.description
         websiteUrl = projectUrl
         issueTrackerUrl = "$projectUrl/issues"
         vcsUrl = "$projectUrl/.git"
         licenses = ['Apache-2.0']
         labels = ['spock', 'geb', 'spock-reports', 'testing', 'reports']
-        publicDownloadNumbers = true
-        attributes = [:]
-        version {
-            name = project.version
-            vcsTag = project.version
-            attributes = [:]
-        }
     }
 }
