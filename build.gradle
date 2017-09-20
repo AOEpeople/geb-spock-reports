@@ -36,7 +36,7 @@ bintray {
     dryRun = false
     publish = true
     pkg {
-        repo = 'geb-spock-reports'
+        repo = 'libraries'
         userOrg = 'aoepeople'
         websiteUrl = projectUrl
         issueTrackerUrl = "$projectUrl/issues"
