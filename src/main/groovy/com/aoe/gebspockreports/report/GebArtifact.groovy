@@ -13,19 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.aoe.gebspockreport.report
+package com.aoe.gebspockreports.report
 
-class FeatureReport {
+import com.aoe.gebspockreports.GebReportUtils
+
+class GebArtifact {
 
     int number
+    long timestamp
     String label
-    List<GebArtifact> artifacts
+    String pageObject
+    String url
+    List<String> files
 
-    FeatureReport() {
-        artifacts = new ArrayList<>()
+    GebArtifact() {
+        files = new ArrayList<>()
     }
 
-    GebArtifact findArtifactByNumber(int number) {
-        artifacts.find { artifact -> artifact.number == number }
+    def addFiles(List<File> newFiles) {
+        newFiles.each { File file ->
+            String path = GebReportUtils.removeReportDirFromPath(file.path)
+            if (!(path in files)) {
+                files.add(path)
+            }
+        }
     }
 }

@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.aoe.gebspockreport
+package com.aoe.gebspockreports
 
-import com.aoe.gebspockreport.report.GebReport
+import com.aoe.gebspockreports.report.GebReport
 import com.google.gson.GsonBuilder
 import geb.ConfigurationLoader
 

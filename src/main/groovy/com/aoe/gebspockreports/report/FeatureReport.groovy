@@ -13,17 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.aoe.gebspockreport.report
+package com.aoe.gebspockreports.report
 
-class GebReport {
+class FeatureReport {
 
-    List<SpecReport> specs
+    int number
+    String label
+    List<GebArtifact> artifacts
 
-    GebReport() {
-        specs = new ArrayList<>()
+    FeatureReport() {
+        artifacts = new ArrayList<>()
     }
 
-    SpecReport findSpecByLabel(String label) {
-        specs.find { spec -> spec.label == label }
+    GebArtifact findArtifactByNumber(int number) {
+        artifacts.find { artifact -> artifact.number == number }
     }
 }

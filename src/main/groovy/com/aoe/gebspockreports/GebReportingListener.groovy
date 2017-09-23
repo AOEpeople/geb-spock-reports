@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.aoe.gebspockreport
+package com.aoe.gebspockreports
 
-import com.aoe.gebspockreport.report.FeatureReport
-import com.aoe.gebspockreport.report.GebArtifact
-import com.aoe.gebspockreport.report.SpecReport
+import com.aoe.gebspockreports.report.FeatureReport
+import com.aoe.gebspockreports.report.GebArtifact
+import com.aoe.gebspockreports.report.SpecReport
 import geb.report.ReportState
 import geb.report.Reporter
 import geb.report.ReportingListener
