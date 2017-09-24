@@ -1,10 +1,12 @@
 # geb-spock-reports
 
+ [ ![Download](https://api.bintray.com/packages/aoepeople/libraries/geb-spock-reports/images/download.svg) ](https://bintray.com/aoepeople/libraries/geb-spock-reports/_latestVersion)
+
 geb-spock-reports is a library to integrate [Geb](http://gebish.org/) screenshots into [spock-reports](https://github.com/renatoathaydes/spock-reports).
   
 ## Usage
 
-Make sure to add `jcenter()` to your repositories.
+Add `jcenter()` to the repositories in your  `build.gradle`.
 
 ```groovy
 repositories {
@@ -12,40 +14,42 @@ repositories {
 }
 ``` 
 
-Add required dependencies to your `build.gradle`.
+Add dependencies.
 
 ```groovy
-testCompile 'com.aoe:geb-spock-reports:0.1.0'
-
-// required spock libraries
-testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-2"
-testCompile ("com.athaydes:spock-reports:1.3.1") { transitive = false }
-
-// required geb libraries
-testCompile "org.gebish:geb-spock:1.1.1"
-
-// you may also need selenium support
-testCompile "org.seleniumhq.selenium:selenium-firefox-driver:2.52.0"
-testCompile "org.seleniumhq.selenium:selenium-support:2.52.0"
-
-// recommended for logging
-testCompile 'org.slf4j:slf4j-api:1.7.13'
-testCompile 'org.slf4j:slf4j-simple:1.7.13'
+dependencies {
+    testCompile 'com.aoe:geb-spock-reports:0.1.1'
+    
+    // required spock libraries
+    testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-2"
+    testCompile ("com.athaydes:spock-reports:1.3.1") { transitive = false }
+    
+    // required geb libraries
+    testCompile "org.gebish:geb-spock:1.1.1"
+    
+    // you may also need selenium support
+    testCompile "org.seleniumhq.selenium:selenium-firefox-driver:2.52.0"
+    testCompile "org.seleniumhq.selenium:selenium-support:2.52.0"
+    
+    // recommended for logging
+    testCompile 'org.slf4j:slf4j-api:1.7.13'
+    testCompile 'org.slf4j:slf4j-simple:1.7.13'
+}
 ```
 
----
+#### Configure Geb
 
 Create a `GebConfig.groovy` in `src/test/resources`.
 See [Book of Geb](http://gebish.org/manual/current/#configuration) for further configuration.
 
 ```groovy
-import com.aoe.gebspockreport.GebReportingListener
+import com.aoe.gebspockreports.GebReportingListener
 
 reportingListener = new GebReportingListener()
 reportsDir = 'build/geb-spock-reports'
 ```
 
----
+#### Configure spock-reports
 
 Create a properties file named 
 
@@ -72,7 +76,7 @@ See the [spock-reports documentation](https://github.com/renatoathaydes/spock-re
 
 ---
 
-**Important:** For now, make sure that the `reportDir` in `GebConfig.groovy` matches the `outputDir` in the `.properties` file!
+**Important:** Make sure that the `reportDir` in `GebConfig.groovy` matches the `outputDir` in the `.properties` file!
 
 ## License
 
