@@ -4,10 +4,18 @@ geb-spock-reports is a library to integrate [Geb](http://gebish.org/) screenshot
   
 ## Usage
 
+Make sure to add `jcenter()` to your repositories.
+
+```groovy
+repositories {
+    jcenter()
+}
+``` 
+
 Add required dependencies to your `build.gradle`.
 
 ```groovy
-// add a dependency to this library (todo: publish jar)
+testCompile 'com.aoe:geb-spock-reports:0.1.0'
 
 // required spock libraries
 testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-2"
