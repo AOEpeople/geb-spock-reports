@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.3
+
+* Escape file separator for Windows environment (thanks to @lubosek)
+
 ## v0.1.2
 
 * Use utf8 charset in html templates

@@ -18,7 +18,7 @@ Add dependencies.
 
 ```groovy
 dependencies {
-    testCompile 'com.aoe:geb-spock-reports:0.1.2'
+    testCompile 'com.aoe:geb-spock-reports:0.1.3'
     
     // required spock libraries
     testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-2"
