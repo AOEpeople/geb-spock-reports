@@ -19,6 +19,8 @@ import com.aoe.gebspockreports.report.GebReport
 import com.google.gson.GsonBuilder
 import geb.ConfigurationLoader
 
+import java.util.regex.Matcher
+
 /**
  * Utility class to access relevant geb report info more easily.
  */
@@ -77,7 +79,7 @@ class GebReportUtils {
     static String createSpecLabelFromPath(String specPath) {
         String label = specPath
         label = removeReportDirFromPath(label)
-        label.replaceAll(File.separator, ".")
+        label.replaceAll(Matcher.quoteReplacement(File.separator), ".")
     }
 
     /**
