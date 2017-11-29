@@ -147,6 +147,12 @@ writeIssuesOrSees(utils.specAnnotation(data, spock.lang.See), 'See')
         </td>
         <td class="block-text">
             <p class="block-text">$block.text</p>
+            <% if (block.sourceCode) {
+                %><pre><%
+                block.sourceCode.each { out << it << System.getProperty("line.separator") }
+                %></pre><%
+            }
+            %>
         </td>
     </tr>
     <% } %>
