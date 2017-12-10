@@ -32,4 +32,16 @@ class SampleSpec extends Specification {
         expect: "17 is bigger than 42"
         Math.max(17, 42) == 17
     }
+
+    def "data table (expected failure)"() {
+        expect:
+        Math.min(a, b) == c
+
+        where:
+        a | b || c
+        1 | 2 || 1
+        2 | 1 || 2
+        3 | 1 || 1
+        1 | 4 || 4
+    }
 }

@@ -46,7 +46,19 @@ if ( issues?.value() ) { %>
 </div> <%
 }
 }
-%>
+
+def writeStackTrace = { error, index, featureName ->
+    def uniqueId = "${featureName.hashCode()}-${index}" %>
+    <pre>$error</pre>
+    <input type="checkbox" id="toggle-stacktrace-checkbox-$uniqueId" class="toggle-stacktrace-checkbox" checked />
+    <label for="toggle-stacktrace-checkbox-$uniqueId" class="toggle-stacktrace-label" >Stacktrace</label>
+    <div>
+        <pre><% error.getStackTrace().each { stackTraceElement -> %>
+$stackTraceElement
+        <% } %>
+        </pre>
+    </div>
+<% } %>
 
 <h2>Report for ${utils.getSpecClassName(data)}</h2>
 <hr>
@@ -241,19 +253,21 @@ writeIssuesOrSees(utils.specAnnotation(data, spock.lang.See), 'See')
                 <div class="problem-header">The following problems occurred:</div>
                 <div class="problem-list">
                     <ul>
-                        <% problems.forEach { problem ->
-                        if (problem.dataValues) { %>
-                        <li>$problem.dataValues</li>
-                        <ul>
-                            <% problem.errors.forEach { error ->  %>
-                            <li><pre>$error</pre></li>
-                            <% } %>
-                        </ul>
-                        <% } else {
-                        problems.errors.forEach { error -> %>
-                        <li><pre>${error[0]}</pre></li>
-                        <% }
-                        }
+                        <% problems.eachWithIndex { problem, index ->
+                            if (problem.dataValues) { %>
+                                <li>Input: $problem.dataValues</li>
+                                <ul>
+                                    <% problem.errors.each { error ->  %>
+                                    <li>
+                                        <% writeStackTrace(error, index, name) %>
+                                    </li>
+                                    <% } %>
+                                </ul>
+                            <% } else {
+                                problems.errors.forEach { error -> %>
+                                <li><% writeStackTrace(error[0], index, name) %></li>
+                            <% }
+                            }
                         } %>
                     </ul>
                 </div>

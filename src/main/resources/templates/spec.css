@@ -57,6 +57,10 @@ table.summary-table td {
     padding: 6px;
 }
 
+pre {
+    line-height: 1em;
+}
+
 pre.narrative {
     font-family: inherit;
     font-size: 16px;
@@ -212,4 +216,30 @@ div.geb-artifacts table {
 
 tr.geb-failure {
     background-color: #FF8080;
+}
+
+/* toggle stacktrace div */
+input.toggle-stacktrace-checkbox {
+    display: none;
+}
+
+input.toggle-stacktrace-checkbox:checked + label + div {
+    display: none;
+}
+
+input.toggle-stacktrace-checkbox + label:before {
+    content: "Hide "
+}
+
+input.toggle-stacktrace-checkbox:checked + label:before {
+    content:" Show "
+}
+
+label.toggle-stacktrace-label {
+    border-radius: 4px;
+    border: 1px solid black;
+    font-size: 10px;
+    display: inline-block;
+    padding: 2px 5px;
+    cursor: pointer;
 }
