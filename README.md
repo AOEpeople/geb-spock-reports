@@ -18,7 +18,7 @@ Add dependencies.
 
 ```groovy
 dependencies {
-    testCompile 'com.aoe:geb-spock-reports:0.1.3'
+    testCompile 'com.aoe:geb-spock-reports:0.1.4'
     
     // required spock libraries
     testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-2"
@@ -64,6 +64,9 @@ com.athaydes.spockframework.report.outputDir=build/geb-spock-reports
 
 # let's use the TemplateReportCreator to utilize our custom template
 com.athaydes.spockframework.report.IReportCreator=com.athaydes.spockframework.report.template.TemplateReportCreator
+
+# if true, code blocks are shown
+com.athaydes.spockframework.report.showCodeBlocks=true
 
 # specific properties to the TemplateReportCreator
 com.athaydes.spockframework.report.template.TemplateReportCreator.specTemplateFile=/templates/spec-template.html
