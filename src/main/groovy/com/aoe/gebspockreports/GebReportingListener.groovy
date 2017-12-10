@@ -29,47 +29,51 @@ class GebReportingListener implements ReportingListener {
 
     @Override
     void onReport(Reporter reporter, ReportState reportState, List<File> reportFiles) {
-        def gebReport = GebReportUtils.readGebReport()
+        try {
+            def gebReport = GebReportUtils.readGebReport()
 
-        // get info about currently executed feature and report
-        def (featureNum, reportNum, reportLabel) = reportState.label.split('-', 3) // does not split feature and report label
-        int featureNumber = featureNum.toInteger()
-        int reportNumber = reportNum.toInteger()
+            // get info about currently executed feature and report
+            def (featureNum, reportNum, reportLabel) = reportState.label.split('-', 3) // does not split feature and report label
+            int featureNumber = featureNum.toInteger()
+            int reportNumber = reportNum.toInteger()
 
-        // find or create spec report
-        def specLabel = GebReportUtils.createSpecLabelFromPath(reportState.browser.getReportGroupDir().getPath())
-        def specReport = gebReport.findSpecByLabel(specLabel)
-        if (!specReport) {
-            specReport = new SpecReport()
-            specReport.label = specLabel
-            gebReport.specs.add(specReport)
+            // find or create spec report
+            def specLabel = GebReportUtils.createSpecLabelFromPath(reportState.browser.getReportGroupDir().getPath())
+            def specReport = gebReport.findSpecByLabel(specLabel)
+            if (!specReport) {
+                specReport = new SpecReport()
+                specReport.label = specLabel
+                gebReport.specs.add(specReport)
+            }
+
+            // find or create feature report
+            def featureReport = specReport.findFeatureByNumber(featureNumber)
+            if (!featureReport) {
+                featureReport = new FeatureReport()
+                featureReport.number = featureNumber
+                featureReport.label = reportLabel
+                specReport.features.add(featureReport)
+            }
+
+            // find or create artifact
+            def gebArtifact = featureReport.findArtifactByNumber(reportNumber)
+            if (!gebArtifact) {
+                gebArtifact = new GebArtifact()
+                gebArtifact.number = reportNumber
+                gebArtifact.timestamp = new Date().time
+                gebArtifact.label = reportLabel
+                gebArtifact.pageObject = reportState.browser.page.getClass().getSimpleName()
+                gebArtifact.url = reportState.browser.getCurrentUrl()
+                featureReport.artifacts.add(gebArtifact)
+            }
+
+            // add report files
+            gebArtifact.addFiles(reportFiles)
+
+            // serialize geb report
+            GebReportUtils.writeGebReport(gebReport)
+        } catch(e) {
+            println("Error while creating report for label '${reportState.label}': $e.")
         }
-
-        // find or create feature report
-        def featureReport = specReport.findFeatureByNumber(featureNumber)
-        if (!featureReport) {
-            featureReport = new FeatureReport()
-            featureReport.number = featureNumber
-            featureReport.label = reportLabel
-            specReport.features.add(featureReport)
-        }
-
-        // find or create artifact
-        def gebArtifact = featureReport.findArtifactByNumber(reportNumber)
-        if (!gebArtifact) {
-            gebArtifact = new GebArtifact()
-            gebArtifact.number = reportNumber
-            gebArtifact.timestamp = new Date().time
-            gebArtifact.label = reportLabel
-            gebArtifact.pageObject = reportState.browser.page.getClass().getSimpleName()
-            gebArtifact.url = reportState.browser.getCurrentUrl()
-            featureReport.artifacts.add(gebArtifact)
-        }
-
-        // add report files
-        gebArtifact.addFiles(reportFiles)
-
-        // serialize geb report
-        GebReportUtils.writeGebReport(gebReport)
     }
 }
