@@ -28,8 +28,8 @@ dependencies {
     testCompile "org.gebish:geb-spock:1.1.1"
     
     // you may also need selenium support
-    testCompile "org.seleniumhq.selenium:selenium-firefox-driver:2.52.0"
-    testCompile "org.seleniumhq.selenium:selenium-support:2.52.0"
+    testCompile "org.seleniumhq.selenium:selenium-firefox-driver:3.9.1"
+    testCompile "org.seleniumhq.selenium:selenium-support:3.9.1"
     
     // recommended for logging
     testCompile 'org.slf4j:slf4j-api:1.7.13'
