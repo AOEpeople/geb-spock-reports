@@ -19,9 +19,11 @@ class SpecReport {
 
     String label
     List<FeatureReport> features
+    List<GebArtifact> unassignedArtifacts
 
     SpecReport() {
         features = new ArrayList<>()
+        unassignedArtifacts = new ArrayList<>()
     }
 
     FeatureReport findFeatureByNumber(int number) {
@@ -39,5 +41,24 @@ class SpecReport {
         features.find { feature ->
             feature.number == number && feature.label.startsWith(featureName)
         }
+    }
+
+    /**
+     * Used in html report to show all artifacts which could not be mapped to a specific feature/test method.
+     * This is possible when the report label is invalid or reports where taken outside of feature methods,
+     * e.g. setupSpec() or cleanupSpec() methods.
+     *
+     * @return List<GebArtifact>
+     */
+    List<GebArtifact> getUnassignedGebArtifacts() {
+        List<FeatureReport> featuresNotAddedToReport = features.findAll { feature ->
+            !feature.addedToReport
+        }
+
+        featuresNotAddedToReport.collectMany { feature -> feature.artifacts } + unassignedArtifacts
+    }
+
+    GebArtifact findUnassignedArtifactByLabel(String label) {
+        unassignedArtifacts.find { artifact -> artifact.label == label }
     }
 }

@@ -21,8 +21,11 @@ class FeatureReport {
     String label
     List<GebArtifact> artifacts
 
+    transient boolean addedToReport
+
     FeatureReport() {
         artifacts = new ArrayList<>()
+        addedToReport = false
     }
 
     GebArtifact findArtifactByNumber(int number) {

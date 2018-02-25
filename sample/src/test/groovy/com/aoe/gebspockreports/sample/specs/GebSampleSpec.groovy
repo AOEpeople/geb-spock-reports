@@ -20,6 +20,10 @@ import geb.spock.GebReportingSpec
 
 class GebSampleSpec extends GebReportingSpec {
 
+    def setupSpec() {
+        browser.report("report from setup spec")
+    }
+
     def "simple screenshot test"() {
         when:
         drive {
@@ -38,11 +42,9 @@ class GebSampleSpec extends GebReportingSpec {
             go "http://gebish.org"
         }
 
-        // this report gets ignored as the label format is invalid
+        // this report gets added to the unassigned artifacts as the label format is invalid
         browser.report("invalid label")
-
-        // use the report method provided by GebReportingSpec
-        report "Geb start page"
+        browser.report("000-000-invalid label looking like a feature label")
 
         then:
         title.contains("Browser Automation")

@@ -274,10 +274,48 @@ writeIssuesOrSees(utils.specAnnotation(data, spock.lang.See), 'See')
             </div>
         </td>
     </tr>
-    <% } %>
-    <% } %>
+    <% }
+    gebFeatureReport?.addedToReport = true
+    } %>
     </tbody>
 </table>
+
+<%
+def unassignedArtifacts = specReport?.getUnassignedGebArtifacts()
+if (unassignedArtifacts) {
+%>
+
+<h3>Unassigned Geb Artifacts</h3>
+<span>The following artifacts could not be mapped to a feature.</span>
+
+<div class="geb-artifacts">
+    <table>
+        <thead>
+        <tr>
+            <th>Label</th>
+            <th>Image</th>
+            <th>Html</th>
+            <th>Page object</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% unassignedArtifacts.forEach { artifact ->
+        def label = artifact.label
+        def imageFile = "./" + artifact.files.find { it.endsWith('png') }
+        def domSnapshotFile = "./" + artifact.files.find { it.endsWith('html') }
+        %>
+        <tr>
+            <td>$label</td>
+            <td><a href="$imageFile">(png)</a></td>
+            <td><a href="$domSnapshotFile">(html)</a></td>
+            <td>${artifact.pageObject}</td>
+        </tr>
+        <%
+        } %>
+        </tbody>
+    </table>
+</div>
+<% } %>
 
 <hr>
 <div class="footer">
