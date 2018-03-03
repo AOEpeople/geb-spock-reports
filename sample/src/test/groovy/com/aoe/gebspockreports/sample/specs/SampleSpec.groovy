@@ -44,4 +44,16 @@ class SampleSpec extends Specification {
         3 | 1 || 1
         1 | 4 || 4
     }
+
+    def "long exception message"() {
+        expect:
+        throw new IllegalStateException("this is a really long exception message which would break the layout without scrolling.")
+    }
+
+    def "this is going to be a really bloated feature method with a long label and block description to check correct word wrap behavior"() {
+        expect: "this is a really long block description which should result in a proper word wrap. the code below on the other hand is scrollable and should not result in a word wrap."
+        def x = 0 + 1 + 1 + 2 + 3 + 5 + 8 + 13 + 21 + 34 + 55 + 89 + 144 + 233 + 377 + 610 + 987 + 1597
+        def y = 4180
+        x == y
+    }
 }

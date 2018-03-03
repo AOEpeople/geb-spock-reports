@@ -53,7 +53,7 @@ def writeStackTrace = { error, index, featureName ->
     <input type="checkbox" id="toggle-stacktrace-checkbox-$uniqueId" class="toggle-stacktrace-checkbox" checked />
     <label for="toggle-stacktrace-checkbox-$uniqueId" class="toggle-stacktrace-label" >Stacktrace</label>
     <div>
-        <pre><% error.getStackTrace().each { stackTraceElement -> %>
+        <pre class="stacktrace"><% error.getStackTrace().each { stackTraceElement -> %>
 $stackTraceElement
         <% } %>
         </pre>
@@ -154,13 +154,13 @@ writeIssuesOrSees(utils.specAnnotation(data, spock.lang.See), 'See')
     <!-- print given, when, then, ... blocks -->
     <% blocks.forEach { block -> %>
     <tr class="${isIgnored ? 'ignored' : ''}">
-        <td>
-            <p class="block-kind">$block.kind</p>
+        <td class="block-kind" colspan="1">
+            <p>$block.kind</p>
         </td>
-        <td class="block-text">
-            <p class="block-text">$block.text</p>
+        <td class="block-text" colspan="9">
+            <p>$block.text</p>
             <% if (block.sourceCode) {
-                %><pre><%
+                %><pre class="code"><%
                 block.sourceCode.each { out << it << System.getProperty("line.separator") }
                 %></pre><%
             }
@@ -174,8 +174,8 @@ writeIssuesOrSees(utils.specAnnotation(data, spock.lang.See), 'See')
     if (params && failedIterations) {
     %>
     <tr>
-        <td>Params:</td>
-        <td>
+        <td colspan="1">Params:</td>
+        <td colspan="7">
             <div class="spec-examples">
                 <table class="ex-table">
                     <thead>
@@ -200,7 +200,7 @@ writeIssuesOrSees(utils.specAnnotation(data, spock.lang.See), 'See')
         def failCount = iterations.findAll { it.failures || it.errors }.size()
         def passedCount = iterations.size() - failCount
         %>
-        <td>
+        <td colspan="2">
             <p class="spec-status">$passedCount/${iterations.size()} passed</p>
         </td>
     </tr>
@@ -256,7 +256,7 @@ writeIssuesOrSees(utils.specAnnotation(data, spock.lang.See), 'See')
                         <% problems.eachWithIndex { problem, index ->
                             if (problem.dataValues) { %>
                                 <li>Input: $problem.dataValues</li>
-                                <ul>
+                                <ul class="margin-bottom-16">
                                     <% problem.errors.each { error ->  %>
                                     <li>
                                         <% writeStackTrace(error, index, name) %>

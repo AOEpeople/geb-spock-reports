@@ -43,6 +43,7 @@ p.date-test-ran {
 
 table.features-table {
     width: 800px;
+    table-layout: fixed;
 }
 
 table.summary-table {
@@ -64,6 +65,18 @@ table.summary-table td {
 
 pre {
     line-height: 1em;
+    white-space: pre-wrap;
+}
+
+pre.code {
+    overflow-y: scroll;
+    white-space: pre;
+}
+
+pre.stacktrace {
+    line-height: 0.8em;
+    overflow-y: scroll;
+    white-space: pre;
 }
 
 pre.narrative {
@@ -76,6 +89,10 @@ pre.narrative {
 
 h4.spec-title {
     margin-bottom: 8px;
+}
+
+.margin-bottom-16 {
+    margin-bottom: 16px;
 }
 
 .feature-description {
@@ -192,13 +209,17 @@ td.ex-result {
     font-weight: bold;
 }
 
-p.block-kind {
+td.block-kind {
     margin: 2px;
     font-style: italic;
 }
 
-p.block-text {
+td.block-text {
+    width: 100%;
+}
 
+td.block-text > p {
+    margin-top: 5px;
 }
 
 div.footer {
