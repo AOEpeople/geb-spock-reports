@@ -80,7 +80,7 @@ writeIssuesOrSees(utils.specAnnotation(data, spock.lang.See), 'See')
 %>
 
 <div>
-    <h2>Summary:</h2>
+    <h2>Summary</h2>
 
     <table>
         <thead>
@@ -106,7 +106,7 @@ writeIssuesOrSees(utils.specAnnotation(data, spock.lang.See), 'See')
     </table>
 </div>
 
-<h2>Features:</h2>
+<h2>Features</h2>
 <ul id="toc">
     <% features.eachFeature { name, result, blocks, iterations, params ->
     def classSuffix = result.toLowerCase()

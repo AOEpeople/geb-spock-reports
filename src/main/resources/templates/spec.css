@@ -59,8 +59,8 @@ div.feature-ignored {
 }
 
 div.feature-heading {
-    margin-bottom: 0px;
-    padding: 12px 0px 12px 8px;
+    margin-bottom: 0;
+    padding: 12px 0 12px 8px;
     margin-left: -8px;
     background-color: #FAFAFA;
 }
@@ -94,7 +94,7 @@ td.code-block-text > p {
 pre.code {
     overflow-y: scroll;
     white-space: pre;
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 pre {
@@ -141,7 +141,7 @@ tr.geb-failure > td {
 div.problem-description {
     padding: 10px;
     background: #FFCDD2;
-    margin: 12px 2px 0px 2px;
+    margin: 12px 2px 0 2px;
 }
 
 div.problem-header {

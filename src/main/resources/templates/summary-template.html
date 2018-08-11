@@ -19,6 +19,8 @@ limitations under the License.
 <head>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="summary.css" />
+    <script src="summary.js"></script>
 </head>
 <body>
 
@@ -29,7 +31,7 @@ limitations under the License.
 <span class="date-test-ran">Created on ${new Date()} by ${System.properties['user.name']}</span>
 
 <div>
-    <h2>Summary:</h2>
+    <h2>Summary</h2>
     <table>
         <thead>
         <tr>
@@ -56,9 +58,22 @@ limitations under the License.
     </table>
 </div>
 
-<h2>Specifications:</h2>
+<h2 class="specifications">Specifications</h2>
 
-<table>
+<div class="filter">
+    <input type="radio" class="table-filter" name="filter-group" id="show-all" onclick="update_filter();" checked />
+    <label for="show-all">ALL</label>
+
+    <input type="radio" class="table-filter" name="filter-group" id="show-failed" onclick="update_filter();" />
+    <label for="show-failed">FAILED</label>
+
+    <input type="radio" class="table-filter" name="filter-group" id="show-pass" onclick="update_filter();" />
+    <label for="show-pass">PASS</label>
+
+    <input type="search" class="light-table-filter" id="light-table-filter" data-table="summary-table" placeholder="Filter table">
+</div>
+
+<table class="summary-table filtered-table table">
     <thead>
     <tr>
         <th>Name</th>
@@ -68,12 +83,15 @@ limitations under the License.
         <th>Skipped</th>
         <th>Success rate</th>
         <th>Time</th>
+        <th>Status</th>
     </tr>
     </thead>
     <tbody>
     <% data.each { name, map ->
-    def s = map.stats%>
-    <tr class="${s.errors ? 'error' : ''} ${s.failures ? 'failure' : ''} ">
+    def s = map.stats
+    def finalStatus = s.failures || s.errors || s.skipped ? 'FAILED' : 'PASS'
+    %>
+    <tr class="${s.errors ? 'error' : ''} ${s.failures ? 'failure' : ''}">
         <td><a href="${name}.html">$name</a></td>
         <td>${s.totalRuns}</td>
         <td>${s.failures}</td>
@@ -81,6 +99,7 @@ limitations under the License.
         <td>${s.skipped}</td>
         <td>${fmt.toPercentage(s.successRate)}</td>
         <td>${fmt.toTimeDuration(s.time)}</td>
+        <td>${finalStatus}</td>
     </tr>
     <% } %>
     </tbody>

@@ -37,9 +37,9 @@ class GebReportUtils {
             REPORT_DIR.mkdirs()
         }
 
-        // css files are currently not configurable
-        def cssFiles = ['base.css', 'spec.css']
-        cssFiles.each { file ->
+        // css and js files are currently not configurable
+        def cssAndJsFiles = ['base.css', 'spec.css', 'summary.css', 'summary.js']
+        cssAndJsFiles.each { file ->
             def src = getClass().getResource("/templates/$file")
             def dst = new File(REPORT_DIR, file)
             dst.write(src.text)
