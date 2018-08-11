@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 Tilman Ginzel, AOE GmbH
+ * Copyright 2017-2018 Tilman Ginzel, AOE GmbH
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,9 @@
 
 package com.aoe.gebspockreports.sample.specs
 
+import spock.lang.Ignore
+import spock.lang.Issue
+import spock.lang.See
 import spock.lang.Specification
 
 /**
@@ -23,9 +26,19 @@ import spock.lang.Specification
  */
 class SampleSpec extends Specification {
 
+    @Issue("123654")
     def "maximum of two numbers"() {
+        given:
+        def x = 17
+
         expect: "42 is bigger than 17"
-        Math.max(17, 42) == 42
+        Math.max(x, 42) == 42
+    }
+
+    @Ignore("Not fully implemented yet")
+    def "ignore me"() {
+        expect:
+        Math.max(1, 1) == 1
     }
 
     def "maximum of two numbers (expected failure)"() {
@@ -33,6 +46,7 @@ class SampleSpec extends Specification {
         Math.max(17, 42) == 17
     }
 
+    @See("Interesting link")
     def "data table (expected failure)"() {
         expect:
         Math.min(a, b) == c
@@ -55,5 +69,21 @@ class SampleSpec extends Specification {
         def x = 0 + 1 + 1 + 2 + 3 + 5 + 8 + 13 + 21 + 34 + 55 + 89 + 144 + 233 + 377 + 610 + 987 + 1597
         def y = 4180
         x == y
+    }
+
+    def "huge data table"() {
+        expect:
+        [param1, param2, param3, param4, param5, param6, param7, param8, param9, param10].max() == c
+
+        where:
+        param1 | param2 | param3 | param4 | param5 | param6 | param7 | param8 | param9 | param10 || c
+        1      | 2      | 3      | 4      | 5      | 6      | 7      | 8      | 9      | 10      || 10
+        1      | 2      | 3      | 4      | 5      | 6      | 7      | 8      | 9      | 10      || 10
+        1      | 2      | 3      | 4      | 5      | 6      | 7      | 8      | 9      | 10      || 10
+        1      | 2      | 3      | 4      | 5      | 6      | 7      | 8      | 9      | 10      || 10
+        1      | 2      | 3      | 4      | 5      | 6      | 7      | 8      | 9      | 10      || 10
+        1      | 2      | 3      | 4      | 5      | 6      | 7      | 8      | 9      | 10      || 10
+        1      | 2      | 3      | 4      | 5      | 6      | 7      | 8      | 9      | 10      || 10
+        1      | 2      | 3      | 4      | 5      | 6      | 7      | 8      | 9      | 10      || 10
     }
 }

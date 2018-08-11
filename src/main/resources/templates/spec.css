@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 Tilman Ginzel, AOE GmbH
+ * Copyright 2017-2018 Tilman Ginzel, AOE GmbH
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,58 +19,87 @@
  * https://github.com/renatoathaydes/spock-reports/blob/master/src/main/resources/spock-feature-report.css
  */
 
-body {
-    font-family: Helvetica;
-    width: 800px;
+span.back-link {
+    font-size: 14px;
+    float: right;
 }
 
-h3 {
-    margin-top: 48px;
+a.feature-toc-error {
+    color: #FFC107;
 }
 
-p {
-    margin: 0
+a.feature-toc-failure {
+    color: #E53935;
 }
 
-table {
-    margin: 5px;
+a.feature-toc-ignored {
+    color: lightgray;
 }
 
-p.date-test-ran {
-    font-size: small;
-    font-style: italic;
+a.feature-toc-pass {
+    color: green;
 }
 
-table.features-table {
-    width: 800px;
-    table-layout: fixed;
+div.feature {
+    border-left: 4px #81C784 solid;
+    margin-top: 38px;
+    padding-left: 8px;
 }
 
-table.summary-table {
-    width: 800px;
-    text-align: left;
+div.feature-error {
+    border-left: 4px #FFC107 solid;
+}
+
+div.feature-failure {
+    border-left: 4px #E53935 solid;
+}
+
+div.feature-ignored {
+    border-left: 4px #DDDDDD solid;
+}
+
+div.feature-heading {
+    margin-bottom: 0px;
+    padding: 12px 0px 12px 8px;
+    margin-left: -8px;
+    background-color: #FAFAFA;
+}
+
+span.feature-name {
     font-weight: bold;
-    font-size: small;
+    font-size: 18px;
 }
 
-table.summary-table th {
-    background: lightblue;
-    padding: 6px;
+span.feature-name-ignored {
+    color: #AAAAAA;
 }
 
-table.summary-table td {
-    background: #E0E0E0;
-    padding: 6px;
+td.code-block-kind {
+    vertical-align: top;
 }
 
-pre {
-    line-height: 1em;
-    white-space: pre-wrap;
+td.code-block-kind > p {
+    padding-top: 5px;
+}
+
+td.code-block-text {
+    width: 100%;
+}
+
+td.code-block-text > p {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 pre.code {
     overflow-y: scroll;
     white-space: pre;
+    margin-top: 0px;
+}
+
+pre {
+    line-height: 1em;
+    white-space: pre-wrap;
 }
 
 pre.stacktrace {
@@ -87,164 +116,43 @@ pre.narrative {
     margin-top: 4px;
 }
 
-h4.spec-title {
-    margin-bottom: 8px;
+tr.ex-pass {
+    color: #388E3C;
+}
+
+tr.ex-fail {
+    color: #E53935;
+    font-weight: bold;
+}
+
+div.geb-artifacts {
+    margin-top: 12px;
+}
+
+p.ignore-reason {
+    margin-top: 8px;
+    color: gray;
+}
+
+tr.geb-failure > td {
+    background-color: #FF8080;
+}
+
+div.problem-description {
+    padding: 10px;
+    background: #FFCDD2;
+    margin: 12px 2px 0px 2px;
+}
+
+div.problem-header {
+    font-weight: bold;
+    color: #E53935;
 }
 
 .margin-bottom-16 {
     margin-bottom: 16px;
 }
 
-.feature-description {
-    font-size: large;
-    background: lightblue;
-    padding: 4px;
-}
-
-.feature-toc-error {
-    color: #F89A4F;
-}
-
-.feature-toc-failure {
-    color: #FF8080;
-}
-
-.feature-toc-ignored {
-    color: lightgray;
-}
-
-.feature-toc-pass {
-    color: green;
-}
-
-.feature-description.error {
-    background: #F89A4F;
-}
-
-.feature-description.failure {
-    background: #FF8080;
-}
-
-.feature-description.ignored {
-    background: lightgray;
-}
-
-.feature-description.ignored .reason {
-    color: black;
-    font-style: italic;
-    font-size: small;
-}
-
-div.issues {
-    color: black;
-    font-weight: bold;
-    font-size: small;
-}
-
-div.problem-description {
-    padding: 10px;
-    background: pink;
-    border-radius: 10px;
-}
-
-div.problem-header {
-    font-weight: bold;
-    color: red;
-}
-
-div.problem-list {
-
-}
-
-table.ex-table th {
-    background: lightblue;
-    padding: 0px 5px 0px 5px;
-}
-
-table.ex-table td {
-    background: #E0E0E0;
-    padding: 0px 5px 0px 5px;
-}
-
-table td {
-    min-width: 50px;
-}
-
-col.block-kind-col {
-    width: 70px;
-}
-
-span.spec-header {
-    font-weight: bold;
-}
-
-span.back-to-top {
-    float: right;
-    font-size: 60%;
-}
-
-div.spec-text {
-    /*color: green;*/
-}
-
-p.spec-status {
-    font-style: italic;
-}
-
-.ignored {
-    color: gray;
-}
-
-td.ex-result {
-    text-align: center;
-    background: white !important;
-}
-
-.ex-pass {
-    color: darkgreen;
-}
-
-.ex-fail {
-    color: red;
-    font-weight: bold;
-}
-
-td.block-kind {
-    margin: 2px;
-    font-style: italic;
-}
-
-td.block-text {
-    width: 100%;
-}
-
-td.block-text > p {
-    margin-top: 5px;
-}
-
-div.footer {
-    text-align: center;
-    font-size: small;
-}
-
-div.geb-artifacts {
-    font-size: 13px;
-    width: 100%;
-    margin-top: 12px;
-}
-
-div.geb-artifacts table {
-    text-align: left;
-    width: 100%;
-    border: 1px solid lightgray;
-    margin: 0;
-}
-
-tr.geb-failure {
-    background-color: #FF8080;
-}
-
-/* toggle stacktrace div */
 input.toggle-stacktrace-checkbox {
     display: none;
 }

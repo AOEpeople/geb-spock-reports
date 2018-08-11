@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 Tilman Ginzel, AOE GmbH
+ * Copyright 2017-2018 Tilman Ginzel, AOE GmbH
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ class GebReportUtils {
         }
 
         // css files are currently not configurable
-        def cssFiles = ['spec.css', 'summary.css']
+        def cssFiles = ['base.css', 'spec.css']
         cssFiles.each { file ->
             def src = getClass().getResource("/templates/$file")
             def dst = new File(REPORT_DIR, file)

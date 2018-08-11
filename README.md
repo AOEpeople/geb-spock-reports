@@ -87,7 +87,7 @@ This project is licensed under the [Apache Software License, Version 2.0](http:/
 
 See [`LICENSE`](LICENSE) for more information.
 
-    Copyright 2017 Tilman Ginzel, AOE GmbH
+    Copyright 2017-2018 Tilman Ginzel, AOE GmbH
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

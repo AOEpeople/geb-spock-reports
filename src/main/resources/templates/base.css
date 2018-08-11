@@ -1,0 +1,105 @@
+/**
+ * Copyright 2018 Tilman Ginzel, AOE GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * ---
+ *
+ * Parts of this file are copied from spock-reports by Renato Athaydes, licensed under ASF2 license:
+ * https://github.com/renatoathaydes/spock-reports/blob/master/src/main/resources/spock-summary-report.css
+ * https://github.com/renatoathaydes/spock-reports/blob/master/src/main/resources/spock-feature-report.css
+ */
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    width: 1000px;
+    margin: auto;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    color: #DDDDDD;
+    background-color: #DDDDDD;
+}
+
+h1 {
+    font-weight: 300;
+    margin: 24px 0px 8px 0px;
+    font-size: 32px;
+}
+
+h2 {
+    margin-top: 36px;
+    font-size: 22px;
+    font-weight: 300;
+}
+
+h3 {
+    font-weight: 300;
+    font-size: 14px;
+    margin-top: 32px;
+    margin-bottom: 4px;
+}
+
+p {
+    margin: 0;
+}
+
+table {
+    width: 100%;
+    background-color: white;
+}
+
+th {
+    font-size: 14px;
+    text-align: left;
+    padding: 6px;
+    background: #E0E0E0;
+    font-weight: bold;
+}
+
+td {
+    padding: 6px;
+    background-color: #FAFAFA;
+    font-size: 14px;
+    max-width: 500px;
+}
+
+tr.error td, td.error {
+    background-color: #FFC107 !important;
+}
+
+tr.failure td, td.failure {
+    color: #E53935;
+}
+
+div.footer {
+    margin: 24px 0px 24px 0px;
+    padding-top: 24px;
+    border-top: 1px solid #DDDDDD;
+    text-align: center;
+    font-size: 14px;
+}
+
+span.date-test-ran {
+    font-size: 14px;
+}
+
+ul {
+    list-style-type: square;
+}
+
+li {
+    margin: 3px 0px 3px 0px;
+}
