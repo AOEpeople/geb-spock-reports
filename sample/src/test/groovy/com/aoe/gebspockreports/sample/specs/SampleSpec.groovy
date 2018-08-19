@@ -26,10 +26,17 @@ import spock.lang.Specification
  */
 class SampleSpec extends Specification {
 
+    def setupSpec() {
+        reportHeader("This is a custom report header which will be added to the report")
+        reportHeader("You can also add multiple headers")
+    }
+
     @Issue("123654")
     def "maximum of two numbers"() {
         given:
         def x = 17
+        reportInfo(x)
+        reportInfo("some report info")
 
         expect: "42 is bigger than 17"
         Math.max(x, 42) == 42
@@ -42,6 +49,8 @@ class SampleSpec extends Specification {
     }
 
     def "maximum of two numbers (expected failure)"() {
+        reportInfo("report info after ignored feature")
+
         expect: "17 is bigger than 42"
         Math.max(17, 42) == 17
     }

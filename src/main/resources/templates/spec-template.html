@@ -59,7 +59,20 @@ $stackTraceElement
         <% } %>
         </pre>
     </div>
-<% } %>
+<% }
+
+def writeReportInfo = { reportInfo ->
+    if (reportInfo) { %>
+        <h3>Report Info:</h3>
+        <ul>
+        <% reportInfo.each { info -> %>
+            <li>$info</li>
+        <% } %>
+        </ul> <%
+    }
+}
+
+%>
 
 <h1>Report for ${utils.getSpecClassName(data)}</h1>
 <hr>
@@ -70,6 +83,7 @@ $stackTraceElement
 // spec title and narrative
 def specTitle = utils.specAnnotation(data, spock.lang.Title)?.value() ?: ''
 def narrative = (data.info.narrative ?: '')
+def reportHeader = utils.specHeaders(data)
 
 if (specTitle) { %> <h4 class="spec-title">$specTitle</h4> <% }
 if (narrative) { %> <pre class="narrative">$narrative</pre> <% }
@@ -105,6 +119,16 @@ writeIssuesOrSees(utils.specAnnotation(data, spock.lang.See), 'See')
         </tbody>
     </table>
 </div>
+
+<% if (reportHeader) { %>
+<h2>Report Header</h2>
+<ul>
+    <% reportHeader.each { header -> %>
+    <li>$header</li>
+    <% } %>
+</ul>
+<% } %>
+
 
 <h2>Features</h2>
 <ul id="toc">
@@ -143,6 +167,19 @@ def gebArtifacts = gebFeatureReport?.artifacts
         <p class="ignore-reason">$ignoreReason</p>
         <% } %>
     </div>
+
+    <!-- print feature report info -->
+    <%
+    if (!isIgnored) {
+        if (utils.isUnrolled(delegate)) {
+            writeReportInfo(utils.nextSpecExtraInfo(data))
+        } else {
+            (1..iterations.size()).each {
+                writeReportInfo(utils.nextSpecExtraInfo(data))
+            }
+        }
+    }
+    %>
 
     <!-- print name and issue/see annotation-->
     <%
