@@ -26,7 +26,7 @@ div.filter {
 
 input.light-table-filter {
     float: right;
-    font-size: 14px;
+    font-size: 13px;
     margin-left: 8px;
 }
 
@@ -41,7 +41,7 @@ input.table-filter + label {
     padding: 5px 5px 3px 5px;
     border: 1px solid #DDDDDD;
     opacity: 0.4;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 input.table-filter:checked + label{

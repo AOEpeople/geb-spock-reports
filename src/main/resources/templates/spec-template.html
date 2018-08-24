@@ -91,6 +91,8 @@ if (narrative) { %> <pre class="narrative">$narrative</pre> <% }
 // issues/see annotations
 writeIssuesOrSees(utils.specAnnotation(data, spock.lang.Issue), 'Issues')
 writeIssuesOrSees(utils.specAnnotation(data, spock.lang.See), 'See')
+
+def summaryCssClass = stats.successRate < 1 ? 'failure' : 'passed'
 %>
 
 <div>
@@ -113,7 +115,7 @@ writeIssuesOrSees(utils.specAnnotation(data, spock.lang.See), 'See')
             <td>${stats.failures}</td>
             <td>${stats.errors}</td>
             <td>${stats.skipped}</td>
-            <td>${fmt.toPercentage(stats.successRate)}</td>
+            <td class="$summaryCssClass">${fmt.toPercentage(stats.successRate)}</td>
             <td>${fmt.toTimeDuration(stats.time)}</td>
         </tr>
         </tbody>

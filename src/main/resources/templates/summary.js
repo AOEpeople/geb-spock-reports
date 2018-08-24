@@ -4,8 +4,8 @@ function update_filter() {
     if (document.getElementById('show-failed').checked) {
         filter_input_element.value = "FAILED";
         filter_input_element.dispatchEvent(new Event('input', {'target': filter_input_element}));
-    } else if (document.getElementById('show-pass').checked) {
-        filter_input_element.value = "PASS";
+    } else if (document.getElementById('show-passed').checked) {
+        filter_input_element.value = "PASSED";
         filter_input_element.dispatchEvent(new Event('input', {'target': filter_input_element}));
     } else if (document.getElementById('show-all').checked) {
         filter_input_element.value = "";
@@ -27,7 +27,7 @@ function update_filter() {
             var _value = _input.value.toUpperCase();
             document.getElementById('show-all').checked = _value === '';
             document.getElementById('show-failed').checked = _value === 'FAILED';
-            document.getElementById('show-pass').checked = _value === 'PASS';
+            document.getElementById('show-passed').checked = _value === 'PASSED';
 
             var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
             Arr.forEach.call(tables, function(table) {

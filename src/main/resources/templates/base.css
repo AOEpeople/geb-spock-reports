@@ -24,6 +24,7 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     width: 1000px;
     margin: auto;
+    font-size: 14px;
 }
 
 hr {
@@ -47,7 +48,7 @@ h2 {
 
 h3 {
     font-weight: 300;
-    font-size: 14px;
+    font-size: 13px;
     margin-top: 24px;
     margin-bottom: 4px;
 }
@@ -62,7 +63,7 @@ table {
 }
 
 th {
-    font-size: 14px;
+    font-size: 13px;
     text-align: left;
     padding: 6px;
     background: #E0E0E0;
@@ -72,7 +73,7 @@ th {
 td {
     padding: 6px;
     background-color: #FAFAFA;
-    font-size: 14px;
+    font-size: 13px;
     max-width: 500px;
 }
 
@@ -84,16 +85,24 @@ tr.failure td, td.failure {
     color: #E53935;
 }
 
+td.error, td.failure {
+    font-weight: bold;
+}
+
+td.passed {
+    color: #2E7D32;
+}
+
 div.footer {
     margin: 24px 0px 24px 0px;
     padding-top: 24px;
     border-top: 1px solid #DDDDDD;
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 span.date-test-ran {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 ul {

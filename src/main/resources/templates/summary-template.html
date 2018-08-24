@@ -67,8 +67,8 @@ limitations under the License.
     <input type="radio" class="table-filter" name="filter-group" id="show-failed" onclick="update_filter();" />
     <label for="show-failed">FAILED</label>
 
-    <input type="radio" class="table-filter" name="filter-group" id="show-pass" onclick="update_filter();" />
-    <label for="show-pass">PASS</label>
+    <input type="radio" class="table-filter" name="filter-group" id="show-passed" onclick="update_filter();" />
+    <label for="show-passed">PASSED</label>
 
     <input type="search" class="light-table-filter" id="light-table-filter" data-table="summary-table" placeholder="Filter table">
 </div>
@@ -89,17 +89,19 @@ limitations under the License.
     <tbody>
     <% data.each { name, map ->
     def s = map.stats
-    def finalStatus = s.failures || s.errors || s.skipped ? 'FAILED' : 'PASS'
+    def finalStatus = s.failures || s.errors || s.skipped ? 'FAILED' : 'PASSED'
+    def cssClass = (s.errors ? 'error' : '') + ' ' + (s.failures ? 'failure' : '')
+    def passedCssClass = finalStatus == 'PASSED' ? 'passed' : ''
     %>
-    <tr class="${s.errors ? 'error' : ''} ${s.failures ? 'failure' : ''}">
+    <tr class="$cssClass">
         <td><a href="${name}.html">$name</a></td>
-        <td>${s.totalRuns}</td>
-        <td>${s.failures}</td>
-        <td>${s.errors}</td>
-        <td>${s.skipped}</td>
-        <td>${fmt.toPercentage(s.successRate)}</td>
-        <td>${fmt.toTimeDuration(s.time)}</td>
-        <td>${finalStatus}</td>
+        <td class="$cssClass">${s.totalRuns}</td>
+        <td class="$cssClass">${s.failures}</td>
+        <td class="$cssClass">${s.errors}</td>
+        <td class="$cssClass">${s.skipped}</td>
+        <td class="$cssClass">${fmt.toPercentage(s.successRate)}</td>
+        <td class="$cssClass">${fmt.toTimeDuration(s.time)}</td>
+        <td class="$cssClass $passedCssClass">${finalStatus}</td>
     </tr>
     <% } %>
     </tbody>
