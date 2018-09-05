@@ -24,7 +24,7 @@ div.filter {
     padding-top: 36px;
 }
 
-input.light-table-filter {
+input.search {
     float: right;
     font-size: 13px;
     margin-left: 8px;
@@ -48,3 +48,39 @@ input.table-filter:checked + label{
     opacity: 1.0;
     border: 1px solid #999999;
 }
+
+ul.pagination {
+    list-style: none;
+    padding: 0;
+    text-align: right;
+}
+
+ul.pagination > li {
+    display: inline;
+}
+
+a.page {
+    border: 1px solid #DDDDDD;
+    transition: background-color .3s;
+
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin: 2px;
+
+    line-height: 24px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+
+    font-size: 13px;
+}
+
+ul.pagination li:not(.active) > a.page:hover {
+    background-color: #DDDDDD;
+}
+
+ul.pagination > li.active > a.page {
+    font-weight: bold;
+}
+
