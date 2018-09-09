@@ -38,6 +38,7 @@ h1 {
     font-weight: 300;
     margin: 24px 0px 8px 0px;
     font-size: 32px;
+    word-wrap: break-word;
 }
 
 h2 {
@@ -74,7 +75,9 @@ td {
     padding: 6px;
     background-color: #FAFAFA;
     font-size: 13px;
+    line-height: 15px;
     max-width: 500px;
+    word-wrap: break-word;
 }
 
 tr.error td, td.error {
