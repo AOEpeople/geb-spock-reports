@@ -99,4 +99,21 @@ class GebReportUtils {
 
         path
     }
+
+    /**
+     * Format milliseconds as string.
+     * If the duration is longer than 60 seconds, format as minutes, otherwise as seconds.
+     *
+     * @param millis
+     * @return milliseconds as formatted string
+     */
+    static String formatMillis(long millis) {
+        if (millis > 60000) {
+            float minutes = (float) ((millis / 1000.0) / 60f)
+            String.format("%.3f min", minutes)
+        } else {
+            float seconds = (float) (millis / 1000.0f)
+            String.format("%.3f sec", seconds)
+        }
+    }
 }

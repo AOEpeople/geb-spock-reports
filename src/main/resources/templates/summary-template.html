@@ -23,7 +23,10 @@ limitations under the License.
 </head>
 <body>
 
-<% def stats = utils.aggregateStats(data) %>
+<%
+def stats = utils.aggregateStats(data)
+def gebUtils = new com.aoe.gebspockreports.GebReportUtils()
+%>
 
 <h1>Specification run results</h1>
 <hr>
@@ -100,7 +103,7 @@ limitations under the License.
             <td class="$cssClass">${s.errors}</td>
             <td class="$cssClass">${s.skipped}</td>
             <td class="$cssClass">${fmt.toPercentage(s.successRate)}</td>
-            <td class="$cssClass">${fmt.toTimeDuration(s.time)}</td>
+            <td class="$cssClass">${gebUtils.formatMillis(s.time)}</td>
             <td class="status $cssClass $passedCssClass" data-status="${finalStatus}">${finalStatus}</td>
         </tr>
         <% } %>
