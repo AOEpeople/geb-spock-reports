@@ -18,6 +18,7 @@ limitations under the License.
 <html>
 <head>
     <meta charset="utf-8"/>
+    <link rel="stylesheet" href="chartist.min.css" />
     <link rel="stylesheet" href="base.css" />
     <link rel="stylesheet" href="summary.css" />
 </head>
@@ -33,31 +34,38 @@ def gebUtils = new com.aoe.gebspockreports.GebReportUtils()
 <span class="date-test-ran">Created on ${new Date()} by ${System.properties['user.name']}</span>
 
 <div>
-    <h2>Summary</h2>
-    <table>
-        <thead>
-        <tr>
-            <th>Total</th>
-            <th>Passed</th>
-            <th>Failed</th>
-            <th>Feature failures</th>
-            <th>Feature errors</th>
-            <th>Success rate</th>
-            <th>Total time</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>${stats.total}</td>
-            <td>${stats.passed}</td>
-            <td class="${stats.failed ? 'failure' : ''}">${stats.failed}</td>
-            <td class="${stats.fFails ? 'failure' : ''}">${stats.fFails}</td>
-            <td class="${stats.fErrors ? 'error' : ''}">${stats.fErrors}</td>
-            <td class="${stats.failed ? 'failure' : ''}">${fmt.toPercentage(stats.successRate)}</td>
-            <td>${fmt.toTimeDuration(stats.time)}</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="header-wrapper">
+        <div class="header-left">
+            <h2>Summary</h2>
+            <table class="summary-table">
+                <thead>
+                <tr>
+                    <th>Total</th>
+                    <th>Passed</th>
+                    <th>Failed</th>
+                    <th>Feature failures</th>
+                    <th>Feature errors</th>
+                    <th>Success rate</th>
+                    <th>Total time</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>${stats.total}</td>
+                    <td>${stats.passed}</td>
+                    <td class="${stats.failed ? 'failure' : ''}">${stats.failed}</td>
+                    <td class="${stats.fFails ? 'failure' : ''}">${stats.fFails}</td>
+                    <td class="${stats.fErrors ? 'error' : ''}">${stats.fErrors}</td>
+                    <td class="${stats.failed ? 'failure' : ''}">${fmt.toPercentage(stats.successRate)}</td>
+                    <td>${fmt.toTimeDuration(stats.time)}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="header-right">
+            <div class="ct-chart ct-square"></div>
+        </div>
+    </div>
 </div>
 
 <div id="specs">
@@ -153,5 +161,26 @@ def gebUtils = new com.aoe.gebspockreports.GebReportUtils()
         document.getElementById('filter-passed').onchange = update_filter;
         document.getElementById('filter-failed').onchange = update_filter;
     })(document);
+</script>
 
+<script src="chartist.min.js"></script>
+<script>
+    (function(document) {
+        var data = {
+            series: [
+                {value: ${stats.passed}, className: 'ct-series-passed'},
+                {value: ${stats.failed}, className: 'ct-series-failed'}
+            ].filter(function(v) { return v.value > 0 })
+        };
+
+        var sum = ${stats.total};
+
+        new Chartist.Pie('.ct-chart', data, {
+            labelInterpolationFnc: function (value) {
+                return Math.round(value / sum * 100) + '%';
+            },
+            startAngle: 0,
+            showLabel: true
+        });
+    })(document);
 </script>

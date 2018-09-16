@@ -84,3 +84,31 @@ ul.pagination > li.active > a.page {
     font-weight: bold;
 }
 
+div.header-left {
+    width: 80%;
+    float: left;
+}
+
+div.header-right {
+    float: right;
+    width: 14%;
+}
+
+div.header-wrapper:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.ct-series-passed {
+    fill: #43A047;
+}
+
+.ct-series-failed {
+    fill: #E53935;
+}
+
+.ct-label {
+    fill: #FFFFFF;
+    font-size: 13px;
+}

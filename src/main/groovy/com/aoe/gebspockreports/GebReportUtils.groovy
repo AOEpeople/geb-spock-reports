@@ -38,7 +38,7 @@ class GebReportUtils {
         }
 
         // css and js files are currently not configurable
-        def cssAndJsFiles = ['base.css', 'spec.css', 'summary.css', 'list.min.js' ]
+        def cssAndJsFiles = ['base.css', 'spec.css', 'summary.css', 'list.min.js', 'chartist.min.css', 'chartist.min.js' ]
         cssAndJsFiles.each { file ->
             def src = getClass().getResource("/templates/$file")
             def dst = new File(REPORT_DIR, file)
