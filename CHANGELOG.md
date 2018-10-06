@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.2.0
+
+This update contains some major template design changes.
+In addition, new features from spock-reports have been added.
+
+* **Breaking change**: Make sure to update spock-reports to 1.6.0 or later
+* Major design improvements
+* Add support for `reportInfo` and `reportHeader` from spock-reports (#10)
+* Summary page improvements:
+  * Add pagination to specification table. This must be enabled via a configuration. 
+  * Add filter and search functionality to specification table
+  * Show pie chart to give a quick summary on passed/failed specifications
+* Minor improvements regarding long specification titles and word-wrap
+
+Many thanks to @durgeshshisode1988 for his valuable feedback and ideas! :) 
+
 ## v0.1.5
 
 * Screenshots created outside of feature methods are now shown in a separate area in the html report (#6)

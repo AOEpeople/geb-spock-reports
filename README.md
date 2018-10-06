@@ -18,14 +18,14 @@ Add dependencies.
 
 ```groovy
 dependencies {
-    testCompile 'com.aoe:geb-spock-reports:0.1.5'
+    testCompile 'com.aoe:geb-spock-reports:0.2.0'
     
     // required spock libraries
-    testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-2"
-    testCompile ("com.athaydes:spock-reports:1.3.1") { transitive = false }
+    testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-4"
+    testCompile ("com.athaydes:spock-reports:1.6.0") { transitive = false }
     
     // required geb libraries
-    testCompile "org.gebish:geb-spock:1.1.1"
+    testCompile "org.gebish:geb-spock:2.2"
     
     // you may also need selenium support
     testCompile "org.seleniumhq.selenium:selenium-firefox-driver:3.9.1"
@@ -80,6 +80,22 @@ See the [spock-reports documentation](https://github.com/renatoathaydes/spock-re
 ---
 
 **Important:** Make sure that the `reportDir` in `GebConfig.groovy` matches the `outputDir` in the `.properties` file!
+
+#### Configure geb-spock-reports
+
+You can configure if pagination should be enabled the summary page.
+If pagination is disabled, *all* specifications results will be shown in the table.
+
+By default, pagination is disabled and this config file is not needed.
+To overwrite it, create a `GebSpockReportsConfig.groovy` file in `src/test/resources/` with the following content:
+
+```groovy
+// configure pagination on summary template
+pagination {
+    enabled = true
+    pageSize = 20
+}
+```
 
 ## License
 
