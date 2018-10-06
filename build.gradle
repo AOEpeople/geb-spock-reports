@@ -1,6 +1,6 @@
 plugins {
     id 'nebula.project' version '3.4.0'
-    id 'nebula.release' version '6.0.0'
+    id 'nebula.release' version '8.0.3'
     id 'nebula.nebula-bintray' version '3.5.2'
 }
 
