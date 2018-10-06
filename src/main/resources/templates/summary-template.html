@@ -27,6 +27,7 @@ limitations under the License.
 <%
 def stats = utils.aggregateStats(data)
 def gebUtils = new com.aoe.gebspockreports.GebReportUtils()
+def config = com.aoe.gebspockreports.GebReportConfigLoader.instance.config
 %>
 
 <h1>Specification run results</h1>
@@ -131,14 +132,23 @@ def gebUtils = new com.aoe.gebspockreports.GebReportUtils()
 <script src="list.min.js"></script>
 <script>
     (function(document) {
-        var options = {
-            valueNames: [ 'name', 'status' ],
-            page: 20,
-            pagination: {
-                outerWindow: 1,
-                innerWindow: 3
+        var options = undefined;
+        var paginationEnabled = ${config.pagination.enabled};
+
+        if (paginationEnabled) {
+            options = {
+                valueNames: [ 'name', 'status' ],
+                page: ${config.pagination.pageSize},
+                pagination: {
+                    outerWindow: 1,
+                    innerWindow: 3
+                }
+            };
+        } else {
+            options = {
+                valueNames: [ 'name', 'status' ]
             }
-        };
+        }
 
         var specsList = new List('specs', options);
 
