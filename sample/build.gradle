@@ -1,3 +1,8 @@
+plugins {
+    id "com.energizedwork.webdriver-binaries" version "1.4"
+    id "com.energizedwork.idea-base" version "1.4"
+    id "com.energizedwork.idea-junit" version "1.4"
+}
 apply plugin: 'groovy'
 apply plugin: 'application'
 
@@ -21,4 +26,8 @@ dependencies {
     testCompile "org.seleniumhq.selenium:selenium-chrome-driver:3.9.1"
     testCompile "org.seleniumhq.selenium:selenium-firefox-driver:3.9.1"
     testCompile "org.seleniumhq.selenium:selenium-support:3.9.1"
+}
+
+webdriverBinaries {
+    chromedriver '2.36'
 }

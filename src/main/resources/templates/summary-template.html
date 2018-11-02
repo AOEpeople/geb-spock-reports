@@ -32,6 +32,8 @@ def config = com.aoe.gebspockreports.GebReportConfigLoader.instance.config
 
 <h1>Specification run results</h1>
 <hr>
+<% if (projectName) { %><strong>Project:</strong> <em>${projectName}</em>, <% } %>
+<% if (projectVersion) { %><strong>Version:</strong> <em>${projectVersion}</em>, <% } %>
 <span class="date-test-ran">Created on ${new Date()} by ${System.properties['user.name']}</span>
 
 <div>
@@ -83,6 +85,9 @@ def config = com.aoe.gebspockreports.GebReportConfigLoader.instance.config
 
         <input type="radio" id="filter-failed" name="filter" class="table-filter" data-status="FAILED" />
         <label for="filter-failed">Failed</label>
+
+        <input type="radio" id="filter-skipped" name="filter" class="table-filter" data-status="SKIPPED" />
+        <label for="filter-skipped">Skipped</label>
     </div>
 
     <table class="summary-table table">
@@ -101,8 +106,9 @@ def config = com.aoe.gebspockreports.GebReportConfigLoader.instance.config
         <tbody class="list">
         <% data.each { name, map ->
         def s = map.stats
-        def finalStatus = s.failures || s.errors || s.skipped ? 'FAILED' : 'PASSED'
+        def finalStatus = s.failures || s.errors ? 'FAILED' : s.skipped ?  'SKIPPED' : 'PASSED'
         def cssClass = (s.errors ? 'error' : '') + ' ' + (s.failures ? 'failure' : '')
+        def skippedCssClass = (s.skipped ? 'skipped' : '')
         def passedCssClass = finalStatus == 'PASSED' ? 'passed' : ''
         %>
         <tr class="$cssClass">
@@ -113,7 +119,7 @@ def config = com.aoe.gebspockreports.GebReportConfigLoader.instance.config
             <td class="$cssClass">${s.skipped}</td>
             <td class="$cssClass">${fmt.toPercentage(s.successRate)}</td>
             <td class="$cssClass">${gebUtils.formatMillis(s.time)}</td>
-            <td class="status $cssClass $passedCssClass" data-status="${finalStatus}">${finalStatus}</td>
+            <td class="status $cssClass $skippedCssClass $passedCssClass" data-status="${finalStatus}">${finalStatus}</td>
         </tr>
         <% } %>
         </tbody>
@@ -170,6 +176,7 @@ def config = com.aoe.gebspockreports.GebReportConfigLoader.instance.config
         document.getElementById('filter-all').onchange = show_all;
         document.getElementById('filter-passed').onchange = update_filter;
         document.getElementById('filter-failed').onchange = update_filter;
+        document.getElementById('filter-skipped').onchange = update_filter;
     })(document);
 </script>
 
