@@ -32,9 +32,13 @@ def config = com.aoe.gebspockreports.GebReportConfigLoader.instance.config
 
 <h1>Specification run results</h1>
 <hr>
-<% if (projectName) { %><strong>Project:</strong> <em>${projectName}</em>, <% } %>
-<% if (projectVersion) { %><strong>Version:</strong> <em>${projectVersion}</em>, <% } %>
-<span class="date-test-ran">Created on ${new Date()} by ${System.properties['user.name']}</span>
+<span class="date-test-ran">
+<%
+    out << "Created on ${new Date()} by ${System.properties['user.name']}"
+    out << (projectName ? ', <strong>Project: </strong> ' + projectName : '')
+    out << (projectVersion ? (', <strong>Version: </strong>' + projectVersion) : '')
+%>
+</span>
 
 <div>
     <div class="header-wrapper">
@@ -111,7 +115,7 @@ def config = com.aoe.gebspockreports.GebReportConfigLoader.instance.config
         def skippedCssClass = (s.skipped ? 'skipped' : '')
         def passedCssClass = finalStatus == 'PASSED' ? 'passed' : ''
         %>
-        <tr class="$cssClass">
+        <tr class=" $cssClass $skippedCssClass">
             <td><a class="name" href="${name}.html">$name</a></td>
             <td class="$cssClass">${s.totalRuns}</td>
             <td class="$cssClass">${s.failures}</td>
