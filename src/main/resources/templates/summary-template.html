@@ -112,10 +112,10 @@ def config = com.aoe.gebspockreports.GebReportConfigLoader.instance.config
         def s = map.stats
         def finalStatus = s.failures || s.errors ? 'FAILED' : (s.skipped && !map.executedFeatures) ?  'SKIPPED' : 'PASSED'
         def cssClass = (s.errors ? 'error' : '') + ' ' + (s.failures ? 'failure' : '')
-        def skippedCssClass = (s.skipped ? 'skipped' : '')
+        def skippedCssClass = (s.skipped && !map.executedFeatures ? 'skipped' : '')
         def passedCssClass = finalStatus == 'PASSED' ? 'passed' : ''
         %>
-        <tr class=" $cssClass $skippedCssClass">
+        <tr class="$cssClass $skippedCssClass">
             <td><a class="name" href="${name}.html">$name</a></td>
             <td class="$cssClass">${s.totalRuns}</td>
             <td class="$cssClass">${s.failures}</td>
@@ -123,7 +123,7 @@ def config = com.aoe.gebspockreports.GebReportConfigLoader.instance.config
             <td class="$cssClass">${s.skipped}</td>
             <td class="$cssClass">${fmt.toPercentage(s.successRate)}</td>
             <td class="$cssClass">${gebUtils.formatMillis(s.time)}</td>
-            <td class="status $cssClass $skippedCssClass $passedCssClass" data-status="${finalStatus}">${finalStatus}</td>
+            <td class="status $cssClass $passedCssClass" data-status="${finalStatus}">${finalStatus}</td>
         </tr>
         <% } %>
         </tbody>

@@ -80,12 +80,8 @@ td {
     word-wrap: break-word;
 }
 
-tr.skipped td, td.skipped {
-    background-color: #D3D3D3 !important;
-}
-
-td.skipped {
-    color: #0000ff;
+tr.skipped td {
+    color: lightgray;
 }
 
 tr.error td, td.error {
