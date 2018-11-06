@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.2.1
+
+Many thanks to @trinidad8516 for providing the following changes:
+* Add support to show projectName and projectVersion on summary page
+  * See [configuration](https://github.com/AOEpeople/geb-spock-reports#configure-spock-reports) on how to use them
+* Highlight skipped specifications on summary page and add quick filter
+
 ## v0.2.0
 
 This update contains some major template design changes.
