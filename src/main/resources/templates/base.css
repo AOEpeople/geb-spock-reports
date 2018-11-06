@@ -80,6 +80,10 @@ td {
     word-wrap: break-word;
 }
 
+tr.skipped td {
+    color: lightgray;
+}
+
 tr.error td, td.error {
     background-color: #FFC107 !important;
 }
