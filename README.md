@@ -4,6 +4,12 @@
 
 geb-spock-reports is a library to integrate [Geb](http://gebish.org/) screenshots into [spock-reports](https://github.com/renatoathaydes/spock-reports).
   
+## Screenshots
+
+Report Summary            |  Specification Results
+:-------------------------:|:-------------------------:
+[![](./sample/screenshots/geb-spock-reports_summary-template-thumb.jpg)](./sample/screenshots/geb-spock-reports_summary-template.png) | [![](./sample/screenshots/geb-spock-reports_spec-template-thumb.jpg)](./sample/screenshots/geb-spock-reports_spec-template-thumb.jpg)
+
 ## Usage
 
 Add `jcenter()` to the repositories in your  `build.gradle`.
