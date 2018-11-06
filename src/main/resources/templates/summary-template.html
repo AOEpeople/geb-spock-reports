@@ -110,7 +110,7 @@ def config = com.aoe.gebspockreports.GebReportConfigLoader.instance.config
         <tbody class="list">
         <% data.each { name, map ->
         def s = map.stats
-        def finalStatus = s.failures || s.errors ? 'FAILED' : s.skipped ?  'SKIPPED' : 'PASSED'
+        def finalStatus = s.failures || s.errors ? 'FAILED' : (s.skipped && !map.executedFeatures) ?  'SKIPPED' : 'PASSED'
         def cssClass = (s.errors ? 'error' : '') + ' ' + (s.failures ? 'failure' : '')
         def skippedCssClass = (s.skipped ? 'skipped' : '')
         def passedCssClass = finalStatus == 'PASSED' ? 'passed' : ''
