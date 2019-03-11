@@ -1,5 +1,5 @@
 /**
- * Copyright 2017-2018 Tilman Ginzel, AOE GmbH
+ * Copyright 2017-2019 Tilman Ginzel, AOE GmbH
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -115,5 +115,14 @@ class GebReportUtils {
             float seconds = (float) (millis / 1000.0f)
             String.format("%.3f sec", seconds)
         }
+    }
+
+    /**
+     * Write the full stacktrace to the given writer.
+     *
+     * @param t
+     */
+    static void writeStacktrace(Throwable t, Writer writer) {
+        t.printStackTrace(new PrintWriter(writer))
     }
 }

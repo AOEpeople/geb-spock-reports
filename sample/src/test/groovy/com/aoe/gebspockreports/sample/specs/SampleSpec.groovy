@@ -1,5 +1,5 @@
 /**
- * Copyright 2017-2018 Tilman Ginzel, AOE GmbH
+ * Copyright 2017-2019 Tilman Ginzel, AOE GmbH
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -94,5 +94,15 @@ class SampleSpec extends Specification {
         1      | 2      | 3      | 4      | 5      | 6      | 7      | 8      | 9      | 10      || 10
         1      | 2      | 3      | 4      | 5      | 6      | 7      | 8      | 9      | 10      || 10
         1      | 2      | 3      | 4      | 5      | 6      | 7      | 8      | 9      | 10      || 10
+    }
+
+    def "nested exception spec"() {
+        given:
+        def outerException = new IllegalArgumentException("Outer exception")
+        def innerException = new IllegalStateException("Inner exception")
+        outerException.initCause(innerException)
+
+        expect:
+        throw outerException
     }
 }
