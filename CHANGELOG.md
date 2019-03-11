@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.2
+
+* Show full stacktrace with nested exceptions in report 
+
 ## v0.2.1
 
 Many thanks to @trinidad8516 for providing the following changes:
