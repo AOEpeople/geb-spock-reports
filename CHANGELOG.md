@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.3
+
+* Fix mapping iusse when using data-driven tables with `@Unroll` annotation (#18)
+
 ## v0.2.2
 
 * Show full stacktrace with nested exceptions in report 
