@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 Tilman Ginzel, AOE GmbH
+ * Copyright 2017 - 2019 Tilman Ginzel, AOE GmbH
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,8 +38,13 @@ class SpecReport {
      * @return FeatureReport
      */
     FeatureReport findFeatureByNumberAndName(int number, String featureName) {
+        // If @Unroll annotation is used, each feature run is suffixed with an index [n].
+        // Unfortunately, the featureName parameter and feature.label use a slightly different pattern for this index.
+        // We just remove the index and leading space to be able to find the correct feature.
+        def featureNameWithoutIndex = featureName.replaceAll(/\s+\[\d+]$/, "")
+
         features.find { feature ->
-            feature.number == number && feature.label.startsWith(featureName)
+            feature.number == number && feature.label.startsWith(featureNameWithoutIndex)
         }
     }
 

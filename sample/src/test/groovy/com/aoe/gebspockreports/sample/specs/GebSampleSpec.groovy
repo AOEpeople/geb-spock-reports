@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 Tilman Ginzel, AOE GmbH
+ * Copyright 2017 - 2019 Tilman Ginzel, AOE GmbH
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 package com.aoe.gebspockreports.sample.specs
 
 import geb.spock.GebReportingSpec
+import spock.lang.Unroll
 
 class GebSampleSpec extends GebReportingSpec {
 
@@ -48,6 +49,25 @@ class GebSampleSpec extends GebReportingSpec {
 
         then:
         title.contains("Browser Automation")
+    }
+
+    @Unroll
+    def "feature with unrolled data table"() {
+        when:
+        drive {
+            go "http://gebish.org"
+        }
+
+        report "Start page"
+
+        then:
+        Math.max(a, b) == c
+
+        where:
+        a | b | c
+        1 | 3 | 3
+        7 | 4 | 4
+        0 | 0 | 0
     }
 
     def "screenshot test (expected failure)"() {

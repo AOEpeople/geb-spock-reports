@@ -109,6 +109,12 @@ pagination {
 }
 ```
 
+## Caveats
+
+* If you use Spock's data tables via the `where:` clause, make sure to also use the `@Unroll` annotation.
+  Otherwise it is not possible to map the Geb artifacts (screenshots / DOM snapshot) to the correct feature (#18).
+* If you re-run tests, you should clean the tests results in between `./gradlew clean`.
+
 ## License
 
 This project is licensed under the [Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
