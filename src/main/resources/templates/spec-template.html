@@ -16,20 +16,27 @@ limitations under the License.
 
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="base.css" />
-    <link rel="stylesheet" href="spec.css" />
-</head>
-<body id="top">
 
 <%
 def stats = utils.stats( data )
 
+def config = com.aoe.gebspockreports.GebReportConfigLoader.instance.config
 def gebUtils = new com.aoe.gebspockreports.GebReportUtils()
 def gebReport = gebUtils.readGebReport()
 def specReport = gebReport.findSpecByLabel(utils.getSpecClassName(data))
+%>
 
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="spec.css" />
+    <% if (config.customCssFile != null) { %>
+    <link rel="stylesheet" href="custom.css" />
+    <% } %>
+</head>
+<body id="top">
+
+<%
 def writeIssuesOrSees = { issues, description ->
 if ( issues?.value() ) { %>
 <div class="issues">

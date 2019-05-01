@@ -37,12 +37,32 @@ class GebReportUtils {
             REPORT_DIR.mkdirs()
         }
 
-        // css and js files are currently not configurable
-        def cssAndJsFiles = ['base.css', 'spec.css', 'summary.css', 'list.min.js', 'chartist.min.css', 'chartist.min.js' ]
-        cssAndJsFiles.each { file ->
-            def src = getClass().getResource("/templates/$file")
-            def dst = new File(REPORT_DIR, file)
-            dst.write(src.text)
+        // write css and js files to report dir
+        ['base.css', 'spec.css', 'summary.css', 'list.min.js', 'chartist.min.css', 'chartist.min.js' ].each { file ->
+            writeResourceFile("/templates/$file", file)
+        }
+
+        // write custom css file if it was configured to report dir
+        def customCssFile = GebReportConfigLoader.instance.config.customCssFile
+        if (customCssFile != null) {
+            writeResourceFile("/$customCssFile", "custom.css")
+        }
+    }
+
+    /**
+     * Write the content of a file to a new file.
+     *
+     * @param src - source file path
+     * @param dest - destination file path
+     */
+    private static void writeResourceFile(String src, String dest) {
+        try {
+            def dst = new File(REPORT_DIR, dest)
+            dst.write(getClass().getResource(src).text)
+        } catch (Exception e) {
+            // todo: proper logging
+            println("Could not write resource file from $src to $dest. ${e.getMessage()}")
+            throw e
         }
     }
 

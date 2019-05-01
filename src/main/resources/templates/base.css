@@ -85,7 +85,7 @@ tr.skipped td {
 }
 
 tr.error td, td.error {
-    background-color: #FFC107 !important;
+    background-color: #FFC107;
 }
 
 tr.failure td, td.failure {

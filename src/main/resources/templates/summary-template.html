@@ -1,5 +1,5 @@
 <!--
-Copyright 2017-2018 Tilman Ginzel, AOE GmbH
+Copyright 2017-2019 Tilman Ginzel, AOE GmbH
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,19 +16,23 @@ limitations under the License.
 
 <!DOCTYPE html>
 <html>
+
+<%
+def stats = utils.aggregateStats(data)
+def config = com.aoe.gebspockreports.GebReportConfigLoader.instance.config
+def gebUtils = new com.aoe.gebspockreports.GebReportUtils()
+%>
+
 <head>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="chartist.min.css" />
     <link rel="stylesheet" href="base.css" />
     <link rel="stylesheet" href="summary.css" />
+    <% if (config.customCssFile != null) { %>
+    <link rel="stylesheet" href="custom.css" />
+    <% } %>
 </head>
 <body>
-
-<%
-def stats = utils.aggregateStats(data)
-def gebUtils = new com.aoe.gebspockreports.GebReportUtils()
-def config = com.aoe.gebspockreports.GebReportConfigLoader.instance.config
-%>
 
 <h1>Specification run results</h1>
 <hr>

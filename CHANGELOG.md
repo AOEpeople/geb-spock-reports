@@ -2,7 +2,7 @@
 
 ## v0.2.3
 
-* Fix mapping iusse when using data-driven tables with `@Unroll` annotation (#18)
+* Fix mapping issue when using data-driven tables with `@Unroll` annotation (#18)
 
 ## v0.2.2
 
