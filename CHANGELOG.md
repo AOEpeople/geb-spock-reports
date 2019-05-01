@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.4
+
+* Add possibility to provide custom styles via the customCssFile config option (#20)
+
 ## v0.2.3
 
 * Fix mapping issue when using data-driven tables with `@Unroll` annotation (#18)

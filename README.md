@@ -3,12 +3,19 @@
  [ ![Download](https://api.bintray.com/packages/aoepeople/libraries/geb-spock-reports/images/download.svg) ](https://bintray.com/aoepeople/libraries/geb-spock-reports/_latestVersion)
 
 geb-spock-reports is a library to integrate [Geb](http://gebish.org/) screenshots into [spock-reports](https://github.com/renatoathaydes/spock-reports).
-  
-## Screenshots
 
 Report Summary            |  Specification Results
 :-------------------------:|:-------------------------:
 [![](./sample/screenshots/geb-spock-reports_summary-template-thumb.jpg)](./sample/screenshots/geb-spock-reports_summary-template.png) | [![](./sample/screenshots/geb-spock-reports_spec-template-thumb.jpg)](./sample/screenshots/geb-spock-reports_spec-template-thumb.jpg)
+
+* [Usage](#usage)
+* [Configuration](#configuration)
+  * [Configure Geb](#configure-geb)
+  * [Configure spock-reports](#configure-spock-reports)
+  * [Configure geb-spock-reports](#configure-geb-spock-reports)
+* [Override CSS](#override-css)
+* [Caveats](#caveats)
+* [License](#license)
 
 ## Usage
 
@@ -43,7 +50,9 @@ dependencies {
 }
 ```
 
-#### Configure Geb
+## Configuration
+
+### Configure Geb
 
 Create a `GebConfig.groovy` in `src/test/resources`.
 See [Book of Geb](http://gebish.org/manual/current/#configuration) for further configuration.
@@ -55,7 +64,7 @@ reportingListener = new GebReportingListener()
 reportsDir = 'build/geb-spock-reports'
 ```
 
-#### Configure spock-reports
+### Configure spock-reports
 
 Create a properties file named 
 
@@ -84,7 +93,7 @@ com.athaydes.spockframework.report.template.TemplateReportCreator.summaryFileNam
 com.athaydes.spockframework.report.projectName=Sample Project Name
 
 # Set the version of the project under test so it can be displayed in the report or leave empty and it will be ignored
-com.athaydes.spockframework.report.projectVersion=0.2.0
+com.athaydes.spockframework.report.projectVersion=0.2.4
 ```
 
 See the [spock-reports documentation](https://github.com/renatoathaydes/spock-reports#customizing-the-reports) for further configuration.
@@ -93,11 +102,10 @@ See the [spock-reports documentation](https://github.com/renatoathaydes/spock-re
 
 **Important:** Make sure that the `reportDir` in `GebConfig.groovy` matches the `outputDir` in the `.properties` file!
 
-#### Configure geb-spock-reports
+### Configure geb-spock-reports
 
 You can configure if pagination should be enabled the summary page.
 If pagination is disabled, *all* specifications results will be shown in the table.
-
 By default, pagination is disabled and this config file is not needed.
 To overwrite it, create a `GebSpockReportsConfig.groovy` file in `src/test/resources/` with the following content:
 
@@ -111,6 +119,14 @@ pagination {
 // path must be relative to classpath (e.g. inside /src/test/resources/)
 customCssFile = "custom.css"
 ```
+
+## Override CSS
+
+You can customize the CSS to your needs via two different options:
+
+1. Create a `custom.css` file in your test resources and configure it as described above.
+This method is especially useful if you want to make only minor style changes.
+2. Alternatively, you can copy [`base.css`](https://github.com/AOEpeople/geb-spock-reports/blob/master/src/main/resources/templates/base.css), [`spec.css`](https://github.com/AOEpeople/geb-spock-reports/blob/master/src/main/resources/templates/spec.css) and [`summary.css`](https://github.com/AOEpeople/geb-spock-reports/blob/master/src/main/resources/templates/summary.css) to `src/test/resources/templates` in your project and adapt to your needs.
 
 ## Caveats
 
