@@ -58,7 +58,7 @@ class GebReportUtils {
     private static void writeResourceFile(String src, String dest) {
         try {
             def dst = new File(REPORT_DIR, dest)
-            dst.write(getClass().getResource(src).text)
+            dst.write(GebReportUtils.class.getResource(src).text)
         } catch (Exception e) {
             // todo: proper logging
             println("Could not write resource file from $src to $dest. ${e.getMessage()}")
