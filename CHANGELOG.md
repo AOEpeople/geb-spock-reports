@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.5
+
+* Fix resource loading from static context (#23)
+
 ## v0.2.4
 
 * Add possibility to provide custom styles via the customCssFile config option (#20)
