@@ -30,6 +30,10 @@ class GebReportingListener implements ReportingListener {
     @Override
     void onReport(Reporter reporter, ReportState reportState, List<File> reportFiles) {
         try {
+            if (GebReportConfigLoader.instance.config.gebArtifacts.escapeFilePaths) {
+                reportFiles = escapeReportFiles(reportFiles)
+            }
+
             def gebReport = GebReportUtils.readGebReport()
 
             // find or create spec report
@@ -70,7 +74,7 @@ class GebReportingListener implements ReportingListener {
 
                 // add report files
                 gebArtifact.addFiles(reportFiles)
-            } catch(e) {
+            } catch (e) {
                 // in the case that some error occurred while splitting the report label,
                 // this artifact will be added directly to the spec as an unassigned artifact
 
@@ -89,8 +93,26 @@ class GebReportingListener implements ReportingListener {
 
             // serialize geb report
             GebReportUtils.writeGebReport(gebReport)
-        } catch(e) {
+        } catch (e) {
             println("Unexpected error while creating report for label '${reportState.label}: $e.")
+        }
+    }
+
+    /**
+     * Escape report files and return a modified list containing the escaped files.
+     *
+     * Only whitespace is replaced with an underscore, as Geb is
+     * already taking care of all other non-alphanumeric characters.
+     *
+     * @param reportFiles
+     * @return reportFiles without whitespace
+     */
+    private static List<File> escapeReportFiles(List<File> reportFiles) {
+        reportFiles.collect { file ->
+            String escapedPath = file.path.replaceAll("\\s+", "_")
+            File escapedFile = new File(escapedPath)
+            file.renameTo(escapedFile)
+            escapedFile
         }
     }
 }

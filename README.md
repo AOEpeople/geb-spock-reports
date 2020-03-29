@@ -31,7 +31,7 @@ Add dependencies.
 
 ```groovy
 dependencies {
-    testCompile 'com.aoe:geb-spock-reports:0.2.5'
+    testCompile 'com.aoe:geb-spock-reports:0.2.6'
     
     // required spock libraries
     testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-4"
@@ -93,7 +93,7 @@ com.athaydes.spockframework.report.template.TemplateReportCreator.summaryFileNam
 com.athaydes.spockframework.report.projectName=Sample Project Name
 
 # Set the version of the project under test so it can be displayed in the report or leave empty and it will be ignored
-com.athaydes.spockframework.report.projectVersion=0.2.5
+com.athaydes.spockframework.report.projectVersion=0.2.6
 ```
 
 See the [spock-reports documentation](https://github.com/renatoathaydes/spock-reports#customizing-the-reports) for further configuration.

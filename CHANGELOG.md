@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.6
+
+* Replace whitespace with underscore in Geb artifact files (#25)
+
 ## v0.2.5
 
 * Fix resource loading from static context (#23)
