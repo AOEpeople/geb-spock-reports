@@ -1,9 +1,4 @@
-plugins {
-    id 'nebula.project' version '5.1.2'
-    id 'nebula.release' version '8.0.3'
-    id 'nebula.nebula-bintray' version '4.0.2'
-    id 'com.jfrog.artifactory' version '4.7.5'
-}
+plugins { }
 
 group 'com.aoe'
 apply plugin: 'groovy'
@@ -17,32 +12,4 @@ dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.12'
     compile 'org.gebish:geb-core:2.2'
     compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
-}
-
-contacts {
-    'tilman.ginzel@aoe.com' {
-        moniker 'Tilman Ginzel'
-        github 'tilmanginzel'
-    }
-}
-
-def projectUrl = 'https://github.com/AOEpeople/geb-spock-reports'
-
-bintray {
-    if (project.hasProperty('bintrayUser')) {
-        user = project.property('bintrayUser')
-        key = project.property('bintrayKey')
-    }
-
-    dryRun = false
-    publish = false
-    pkg {
-        repo = 'libraries'
-        userOrg = 'aoepeople'
-        websiteUrl = projectUrl
-        issueTrackerUrl = "$projectUrl/issues"
-        vcsUrl = "$projectUrl/.git"
-        licenses = ['Apache-2.0']
-        labels = ['spock', 'geb', 'spock-reports', 'testing', 'reports']
-    }
 }
