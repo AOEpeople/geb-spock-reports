@@ -50,6 +50,13 @@ dependencies {
 }
 ```
 
+## Compatibility
+
+| geb-spock-reports | spock-reports | spock-core  | Groovy   |
+|-------------------|---------------|-------------|----------|
+| 0.3.0             | 2.0-RC2       | 2.0-M2      | 3.0.*    |
+| 0.2.6             | 1.6.0         | 1.1         | 2.4.*    |
+
 ## Configuration
 
 ### Configure Geb
