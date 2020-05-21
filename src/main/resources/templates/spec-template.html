@@ -168,7 +168,7 @@ def gebArtifacts = gebFeatureReport?.artifacts
         <span class="feature-name feature-name-$cssClass">$name</span>
 
         <%
-        def ignoreReason = description.getAnnotation(spock.lang.Ignore)?.value()
+        def ignoreReason = utils.featureAnnotation(delegate, spock.lang.Ignore)?.value()
         if (ignoreReason) { %>
         <p class="ignore-reason">$ignoreReason</p>
         <% } %>
@@ -189,8 +189,8 @@ def gebArtifacts = gebFeatureReport?.artifacts
 
     <!-- print name and issue/see annotation-->
     <%
-    writeIssuesOrSees(description.getAnnotation(spock.lang.Issue), 'Issues')
-    writeIssuesOrSees(description.getAnnotation(spock.lang.See), 'See')
+    writeIssuesOrSees(utils.featureAnnotation(delegate, spock.lang.Issue), 'Issues')
+    writeIssuesOrSees(utils.featureAnnotation(delegate, spock.lang.See), 'See')
     %>
 
     <!-- print given, when, then, ... blocks -->
