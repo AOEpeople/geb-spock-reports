@@ -100,7 +100,7 @@ com.athaydes.spockframework.report.template.TemplateReportCreator.summaryFileNam
 com.athaydes.spockframework.report.projectName=Sample Project Name
 
 # Set the version of the project under test so it can be displayed in the report or leave empty and it will be ignored
-com.athaydes.spockframework.report.projectVersion=0.2.6
+com.athaydes.spockframework.report.projectVersion=0.3.0-RC1
 ```
 
 See the [spock-reports documentation](https://github.com/renatoathaydes/spock-reports#customizing-the-reports) for further configuration.
