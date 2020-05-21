@@ -1,5 +1,5 @@
 plugins {
-    id "com.energizedwork.webdriver-binaries" version "1.4"
+    id "eu.leontebbens.gradle.chromedriver-updater" version "1.6.2"
 }
 apply plugin: 'groovy'
 apply plugin: 'application'
@@ -21,17 +21,22 @@ dependencies {
     testCompile 'org.slf4j:slf4j-api:1.7.13'
     testCompile 'org.slf4j:slf4j-simple:1.7.13'
 
-    testCompile "org.seleniumhq.selenium:selenium-chrome-driver:3.9.1"
-    testCompile "org.seleniumhq.selenium:selenium-firefox-driver:3.9.1"
-    testCompile "org.seleniumhq.selenium:selenium-support:3.9.1"
+    testCompile "org.seleniumhq.selenium:selenium-chrome-driver:3.11.0"
+    testCompile "org.seleniumhq.selenium:selenium-firefox-driver:3.11.0"
+    testCompile "org.seleniumhq.selenium:selenium-support:3.11.0"
 }
 
-webdriverBinaries {
-    chromedriver '2.36'
+chromedriver {
+    majorVersion = "83"
 }
 
 test {
+    dependsOn updateChromedriver
+
     testLogging {
         showStandardStreams = true
     }
+
+    useJUnitPlatform()
+    systemProperty 'webdriver.chrome.driver', "${updateChromedriver.driverLocation}"
 }
