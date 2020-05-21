@@ -31,24 +31,31 @@ Add dependencies.
 
 ```groovy
 dependencies {
-    testCompile 'com.aoe:geb-spock-reports:0.2.6'
+    testCompile 'com.aoe:geb-spock-reports:0.3.0-RC1'
     
     // required spock libraries
-    testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-4"
-    testCompile ("com.athaydes:spock-reports:1.6.0") { transitive = false }
+    testCompile "org.spockframework:spock-core:2.0-M2-groovy-3.0"
+    testCompile ("com.athaydes:spock-reports:2.0-RC2") { transitive = false }
     
     // required geb libraries
-    testCompile "org.gebish:geb-spock:2.2"
+    testCompile "org.gebish:geb-spock:3.4"
     
     // you may also need selenium support
-    testCompile "org.seleniumhq.selenium:selenium-firefox-driver:3.9.1"
-    testCompile "org.seleniumhq.selenium:selenium-support:3.9.1"
+    testCompile "org.seleniumhq.selenium:selenium-firefox-driver:3.11.0"
+    testCompile "org.seleniumhq.selenium:selenium-support:3.11.0"
     
     // recommended for logging
-    testCompile 'org.slf4j:slf4j-api:1.7.13'
-    testCompile 'org.slf4j:slf4j-simple:1.7.13'
+    testCompile 'org.slf4j:slf4j-api:1.7.30'
+    testCompile 'org.slf4j:slf4j-simple:1.7.30'
 }
 ```
+
+## Compatibility
+
+| geb-spock-reports | spock-reports | spock-core  | Groovy   |
+|-------------------|---------------|-------------|----------|
+| 0.3.0-RC1         | 2.0-RC2       | 2.0-M2      | 3.0.*    |
+| 0.2.6             | 1.6.0         | 1.1         | 2.4.*    |
 
 ## Configuration
 

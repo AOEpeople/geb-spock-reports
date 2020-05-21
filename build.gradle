@@ -1,11 +1,11 @@
 plugins {
-    id 'nebula.project' version '5.1.2'
-    id 'nebula.release' version '8.0.3'
-    id 'nebula.nebula-bintray' version '4.0.2'
-    id 'com.jfrog.artifactory' version '4.7.5'
+    id "com.jfrog.bintray" version "1.8.5"
+    id "maven-publish"
+    id "java-library"
 }
 
 group 'com.aoe'
+version = '0.3.0-RC1'
 apply plugin: 'groovy'
 
 repositories {
@@ -14,35 +14,73 @@ repositories {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.4.12'
-    compile 'org.gebish:geb-core:2.2'
+    compile 'org.codehaus.groovy:groovy-all:3.0.3'
+    compile 'org.gebish:geb-core:3.4'
     compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
-}
-
-contacts {
-    'tilman.ginzel@aoe.com' {
-        moniker 'Tilman Ginzel'
-        github 'tilmanginzel'
-    }
 }
 
 def projectUrl = 'https://github.com/AOEpeople/geb-spock-reports'
 
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
 bintray {
-    if (project.hasProperty('bintrayUser')) {
-        user = project.property('bintrayUser')
-        key = project.property('bintrayKey')
-    }
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
 
     dryRun = false
     publish = false
+    publications = ['maven']
+
     pkg {
         repo = 'libraries'
+        name = 'geb-spock-reports'
         userOrg = 'aoepeople'
         websiteUrl = projectUrl
+        githubRepo = projectUrl
+        githubReleaseNotesFile = "$projectUrl/blob/master/README.md"
         issueTrackerUrl = "$projectUrl/issues"
         vcsUrl = "$projectUrl/.git"
         licenses = ['Apache-2.0']
         labels = ['spock', 'geb', 'spock-reports', 'testing', 'reports']
+        version {
+            name = project.version
+            released = new Date()
+            vcsTag = "v${project.version}"
+        }
     }
 }
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            groupId = 'com.aoe'
+            artifactId = 'geb-spock-reports'
+            version = project.version
+            pom {
+                name = 'geb-spock-reports'
+                description = 'Integrates Geb screenshots into the spock-reports library '
+                url = 'https://github.com/AOEpeople/geb-spock-reports'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'tilmanginzel'
+                        name = 'Tilman Ginzel'
+                        email = 'tilman.ginzel@aoe.com'
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+bintrayUpload.dependsOn build
