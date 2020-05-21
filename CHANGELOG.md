@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.3.0-RC1
+
+* Add support for:
+  * spock-core 2.0-M2
+  * spock-reports 2.0-RC2
+  * Groovy 3
+
 ## v0.2.6
 
 * Replace whitespace with underscore in Geb artifact files (#25)
