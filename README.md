@@ -32,9 +32,10 @@ Add dependencies.
 ```groovy
 dependencies {
     testCompile 'com.aoe:geb-spock-reports:0.3.0-RC1'
-    
+
     // required spock libraries
     testCompile "org.spockframework:spock-core:2.0-M2-groovy-3.0"
+    testCompile "org.spockframework:spock-junit4:2.0-M2-groovy-3.0"
     testCompile ("com.athaydes:spock-reports:2.0-RC2") { transitive = false }
     
     // required geb libraries
@@ -52,10 +53,10 @@ dependencies {
 
 ## Compatibility
 
-| geb-spock-reports | spock-reports | spock-core  | Groovy   |
-|-------------------|---------------|-------------|----------|
-| 0.3.0-RC1         | 2.0-RC2       | 2.0-M2      | 3.0.*    |
-| 0.2.6             | 1.6.0         | 1.1         | 2.4.*    |
+| geb-spock-reports | spock-reports | spock-core  | Groovy   | JUnit |
+|-------------------|---------------|-------------|----------|-------|
+| 0.3.0-RC1         | 2.0-RC2       | 2.0-M2      | 3.0.*    | 5     |
+| 0.2.6             | 1.6.0         | 1.1         | 2.4.*    | 4     |
 
 ## Configuration
 
@@ -147,7 +148,7 @@ This project is licensed under the [Apache Software License, Version 2.0](http:/
 
 See [`LICENSE`](LICENSE) for more information.
 
-    Copyright 2017-2019 Tilman Ginzel, AOE GmbH
+    Copyright 2017-2020 Tilman Ginzel, AOE GmbH
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
