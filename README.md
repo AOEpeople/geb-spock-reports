@@ -8,6 +8,7 @@ Report Summary            |  Specification Results
 :-------------------------:|:-------------------------:
 [![](./sample/screenshots/geb-spock-reports_summary-template-thumb.jpg)](./sample/screenshots/geb-spock-reports_summary-template.png) | [![](./sample/screenshots/geb-spock-reports_spec-template-thumb.jpg)](./sample/screenshots/geb-spock-reports_spec-template-thumb.jpg)
 
+* [Compatibility](#compatibility)
 * [Usage](#usage)
 * [Configuration](#configuration)
   * [Configure Geb](#configure-geb)
@@ -16,6 +17,13 @@ Report Summary            |  Specification Results
 * [Override CSS](#override-css)
 * [Caveats](#caveats)
 * [License](#license)
+
+## Compatibility
+
+| geb-spock-reports | spock-reports | spock-core  | Groovy   | JUnit |
+|-------------------|---------------|-------------|----------|-------|
+| 0.3.0-RC1         | 2.0-RC2       | 2.0-M2      | 3.0.*    | 5     |
+| 0.2.6             | 1.6.0         | 1.1         | 2.4.*    | 4     |
 
 ## Usage
 
@@ -51,12 +59,8 @@ dependencies {
 }
 ```
 
-## Compatibility
-
-| geb-spock-reports | spock-reports | spock-core  | Groovy   | JUnit |
-|-------------------|---------------|-------------|----------|-------|
-| 0.3.0-RC1         | 2.0-RC2       | 2.0-M2      | 3.0.*    | 5     |
-| 0.2.6             | 1.6.0         | 1.1         | 2.4.*    | 4     |
+Reported screenshots can only be embedded in the html report if they follow a specific naming convention.
+To do this, simply extend [`GebReportingSpec`](https://gebish.org/manual/current/#testing-reporting) instead of `GebSpec` in your tests.
 
 ## Configuration
 
