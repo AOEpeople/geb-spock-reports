@@ -27,11 +27,11 @@ Report Summary            |  Specification Results
 
 ## Usage
 
-Add `jcenter()` to the repositories in your  `build.gradle`.
+Add `mavenCentral()` to the repositories in your `build.gradle`.
 
 ```groovy
 repositories {
-    jcenter()
+    mavenCentral()
 }
 ``` 
 
