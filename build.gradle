@@ -13,9 +13,9 @@ repositories {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:3.0.3'
-    compile 'org.gebish:geb-core:3.4'
-    compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
+    implementation 'org.codehaus.groovy:groovy-all:3.0.3'
+    implementation 'org.gebish:geb-core:3.4'
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.7'
 }
 
 def projectUrl = 'https://github.com/AOEpeople/geb-spock-reports'
