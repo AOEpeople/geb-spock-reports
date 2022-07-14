@@ -4,9 +4,9 @@
 
 geb-spock-reports is a library to integrate [Geb](http://gebish.org/) screenshots into [spock-reports](https://github.com/renatoathaydes/spock-reports).
 
-Report Summary            |  Specification Results
-:-------------------------:|:-------------------------:
-[![](./sample/screenshots/geb-spock-reports_summary-template-thumb.jpg)](./sample/screenshots/geb-spock-reports_summary-template.png) | [![](./sample/screenshots/geb-spock-reports_spec-template-thumb.jpg)](./sample/screenshots/geb-spock-reports_spec-template-thumb.jpg)
+|                                                                                                                        Report Summary | Specification Results                                                                                                                 |
+|--------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------|
+| [![](./sample/screenshots/geb-spock-reports_summary-template-thumb.jpg)](./sample/screenshots/geb-spock-reports_summary-template.png) | [![](./sample/screenshots/geb-spock-reports_spec-template-thumb.jpg)](./sample/screenshots/geb-spock-reports_spec-template-thumb.jpg) |
 
 * [Compatibility](#compatibility)
 * [Usage](#usage)
@@ -20,10 +20,11 @@ Report Summary            |  Specification Results
 
 ## Compatibility
 
-| geb-spock-reports | spock-reports | spock-core  | Groovy   | JUnit |
-|-------------------|---------------|-------------|----------|-------|
-| 0.3.0-RC1         | 2.0-RC2       | 2.0-M2      | 3.0.*    | 5     |
-| 0.2.6             | 1.6.0         | 1.1         | 2.4.*    | 4     |
+| geb-spock-reports | spock-reports | spock-core | Groovy | JUnit |
+|-------------------|---------------|------------|--------|-------|
+| 0.3.0-RC2         | 2.1.0         | 2.1        | 3.0.*  | 5     |
+| 0.3.0-RC1         | 2.0-RC2       | 2.0-M2     | 3.0.*  | 5     |
+| 0.2.6             | 1.6.0         | 1.1        | 2.4.*  | 4     |
 
 ## Usage
 
@@ -39,23 +40,23 @@ Add dependencies.
 
 ```groovy
 dependencies {
-    testImplementation 'com.aoe:geb-spock-reports:0.3.0-RC1'
+    testImplementation 'com.aoe:geb-spock-reports:0.3.0-RC2'
 
     // required spock libraries
-    testImplementation "org.spockframework:spock-core:2.0-M2-groovy-3.0"
-    testImplementation "org.spockframework:spock-junit4:2.0-M2-groovy-3.0"
-    testImplementation ("com.athaydes:spock-reports:2.0-RC2") { transitive = false }
+    testImplementation 'org.spockframework:spock-core:2.1-groovy-3.0'
+    testImplementation('com.athaydes:spock-reports:2.3.0-groovy-3.0') { transitive = false }
     
     // required geb libraries
-    testImplementation "org.gebish:geb-spock:3.4"
+    testImplementation 'org.gebish:geb-spock:5.1'
     
     // you may also need selenium support
-    testImplementation "org.seleniumhq.selenium:selenium-firefox-driver:3.11.0"
-    testImplementation "org.seleniumhq.selenium:selenium-support:3.11.0"
+    testImplementation 'org.seleniumhq.selenium:selenium-chrome-driver:4.3.0'
+    testImplementation 'org.seleniumhq.selenium:selenium-firefox-driver:4.3.0'
+    testImplementation 'org.seleniumhq.selenium:selenium-support:4.3.0'
     
     // recommended for logging
-    testImplementation 'org.slf4j:slf4j-api:1.7.30'
-    testImplementation 'org.slf4j:slf4j-simple:1.7.30'
+    testImplementation 'org.slf4j:slf4j-api:1.7.36'
+    testImplementation 'org.slf4j:slf4j-simple:1.7.36'
 }
 ```
 
@@ -105,7 +106,7 @@ com.athaydes.spockframework.report.template.TemplateReportCreator.summaryFileNam
 com.athaydes.spockframework.report.projectName=Sample Project Name
 
 # Set the version of the project under test so it can be displayed in the report or leave empty and it will be ignored
-com.athaydes.spockframework.report.projectVersion=0.3.0-RC1
+com.athaydes.spockframework.report.projectVersion=0.3.0-RC2
 ```
 
 See the [spock-reports documentation](https://github.com/renatoathaydes/spock-reports#customizing-the-reports) for further configuration.

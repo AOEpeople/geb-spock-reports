@@ -65,11 +65,11 @@ def writeStackTrace = { error, index, featureName ->
     </div>
 <% }
 
-def writeReportInfo = { reportInfo ->
-    if (reportInfo) { %>
+def writeExtraInfo = { extraInfo ->
+    if (extraInfo) { %>
         <h3>Report Info:</h3>
         <ul>
-        <% reportInfo.each { info -> %>
+        <% extraInfo.each { info -> %>
             <li>$info</li>
         <% } %>
         </ul> <%
@@ -161,6 +161,7 @@ def cssClass = isIgnored ? 'ignored' : (isError ? 'error' : (isFailure ? 'failur
 featureCount += isIgnored ? 0 : 1
 def gebFeatureReport = specReport?.findFeatureByNumberAndName(featureCount, name)
 def gebArtifacts = gebFeatureReport?.artifacts
+def feature = delegate
 %>
 
 <div class="feature feature-$cssClass">
@@ -178,11 +179,11 @@ def gebArtifacts = gebFeatureReport?.artifacts
     <%
     if (!isIgnored) {
         if (utils.isUnrolled(delegate)) {
-            writeReportInfo(utils.nextSpecExtraInfo(data))
-        } else {
-            (1..iterations.size()).each {
-                writeReportInfo(utils.nextSpecExtraInfo(data))
+            iterations.each { iter ->
+                writeExtraInfo( utils.nextSpecExtraInfo( data, feature, iter.info ) )
             }
+        } else {
+            writeExtraInfo( utils.nextSpecExtraInfo( data, feature ) )
         }
     }
     %>

@@ -8,20 +8,17 @@ repositories {
 dependencies {
     testImplementation rootProject
 
-    testImplementation 'org.codehaus.groovy:groovy-astbuilder:3.0.3'
+    testImplementation 'org.spockframework:spock-core:2.1-groovy-3.0'
 
-    testImplementation "org.spockframework:spock-core:2.0-M2-groovy-3.0"
-    testImplementation "org.spockframework:spock-junit4:2.0-M2-groovy-3.0"
+    testImplementation 'org.gebish:geb-spock:5.1'
+    testImplementation('com.athaydes:spock-reports:2.3.0-groovy-3.0') { transitive = false }
 
-    testImplementation "org.gebish:geb-spock:3.4"
-    testImplementation("com.athaydes:spock-reports:2.0-RC2") { transitive = false }
+    testImplementation 'org.slf4j:slf4j-api:1.7.36'
+    testImplementation 'org.slf4j:slf4j-simple:1.7.36'
 
-    testImplementation 'org.slf4j:slf4j-api:1.7.30'
-    testImplementation 'org.slf4j:slf4j-simple:1.7.30'
-
-    testImplementation "org.seleniumhq.selenium:selenium-chrome-driver:3.11.0"
-    testImplementation "org.seleniumhq.selenium:selenium-firefox-driver:3.11.0"
-    testImplementation "org.seleniumhq.selenium:selenium-support:3.11.0"
+    testImplementation 'org.seleniumhq.selenium:selenium-chrome-driver:4.3.0'
+    testImplementation 'org.seleniumhq.selenium:selenium-firefox-driver:4.3.0'
+    testImplementation 'org.seleniumhq.selenium:selenium-support:4.3.0'
 
     testImplementation 'io.github.bonigarcia:webdrivermanager:5.2.1'
 }
