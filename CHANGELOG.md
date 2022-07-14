@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.3.0-RC2
+* Add support for
+  * spock-core 2.1
+  * spock-reports 2.3.0
+
 ## v0.3.0-RC1
 
 * Add support for:
