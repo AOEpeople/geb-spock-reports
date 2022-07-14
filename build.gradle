@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'com.aoe'
-version = '0.3.0-RC1'
+version = '0.3.0-RC2'
 apply plugin: 'groovy'
 
 repositories {
@@ -13,9 +13,9 @@ repositories {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:3.0.3'
-    compile 'org.gebish:geb-core:3.4'
-    compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
+    implementation 'org.codehaus.groovy:groovy-all:3.0.11'
+    implementation 'org.gebish:geb-core:5.1'
+    implementation 'com.google.code.gson:gson:2.9.0'
 }
 
 def projectUrl = 'https://github.com/AOEpeople/geb-spock-reports'
